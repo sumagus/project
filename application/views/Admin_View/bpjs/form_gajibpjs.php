@@ -4,11 +4,12 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Simple Tables
-        <small>preview of simple tables</small>
-      </h1>
+     <h3 class="box-title">Generate Gaji Bpjs </h3>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo site_url("Admin/Bpjs/Index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      </ol>
     </section>
+
 
     <!-- Main content -->
     <section class="content">
@@ -16,7 +17,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Generate Gaji Bpjs </h3>
+              
               <div class="login-box">
                 <div class="login-box-body">
                   <h3 class="login-box-msg"> </h3>

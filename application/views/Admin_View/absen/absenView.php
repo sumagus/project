@@ -18,43 +18,8 @@
         <div class="col-xs-12">
        <div class="box">
             <!-- /.box-header -->
-             <div class="box-body form">
-              <label for ="Nama">Nama</label>
-              <?php echo form_error('Nama')?>
-              <select name ="name", class="form-control" value="<?=set_select('name')?>" >
-                <option value="">- Pilih -</option>
-             <?php foreach ($pilihUser as $tampil) :?>
-              <option value="<?php echo $tampil->name?>"><?php echo $tampil->name?></option>
-              <?php endforeach?>
-              </select>
-            </div>
+             
             <!-- -->
-            <div class="box-body form">
-                <div id="form-bulan">
-                <label>Bulan</label><br>
-                <select name="bulan" class ="form-control">
-                <option value="">Pilih</option>
-                <option value="1">Januari</option>
-                <option value="2">Februari</option>
-                <option value="3">Maret</option>
-                <option value="4">April</option>
-                <option value="5">Mei</option>
-                <option value="6">Juni</option>
-                <option value="7">Juli</option>
-                <option value="8">Agustus</option>
-                <option value="9">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-                </select>
-                <br /><br />
-                </div>
-                <label>Tahun </label>
-                <div id="date">
-                  <input type ="text"  label="filter tahun"  class ="form-control" id="datepickerYears">
-                </div>
-
-            </div><!-- box body--> 
 <hr>
 <br>
 <div class="table-responsive nowrap" >

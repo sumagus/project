@@ -51,11 +51,11 @@ body {
                 <tr>
                   <td><?php echo $no++?></td>
                   <td><?php echo $tampil->nama_karyawan ?></td>
-                  <td><?php echo $tampil->gaji_bpjs?></td>
-                  <td><?php echo $tampil->jht_perusahaan ?></td>
-                  <td><?php echo $tampil->jht_karyawan?></td>
-                  <td><?php echo $tampil->jkk_perusahaan?></td>
-                  <td><?php echo $tampil->jk_perusahaan?></td>
+                  <td><?php echo number_format($tampil->gaji_bpjs,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->jht_perusahaan,0,',','.') ?></td>
+                  <td><?php echo number_format($tampil->jht_karyawan,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->jkk_perusahaan,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->jk_perusahaan,0,',','.')?></td>
                 </tr>
               <?php endforeach;?>
               </tbody>
@@ -74,7 +74,6 @@ body {
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-    <b><?php echo date("d/m/y")?></b> 
     </div>
     <strong>Copyright &copy; IMV  .</strong> 
     reserved.

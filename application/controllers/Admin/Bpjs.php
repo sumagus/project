@@ -16,14 +16,14 @@ class Bpjs extends CI_Controller {
 		$allData = $this->modelBpjs->getAll(); 
 		$konten = 'admin_view/bpjs/bpjs_view';
 		$title = 'Data Bpjs Karyawan';
-		$this->load->view('template_admin',compact('konten','allData','title'));
+		$this->load->view('Template_Admin',compact('konten','allData','title'));
 	}
 
 	public function create()
 	{
 		$title ='Create BPJS';
 		$konten ='admin_view/bpjs/bpjs_form';
-		$this->load->view('template_admin',
+		$this->load->view('Template_Admin',
 				compact('konten','title'));
 		if(!$_POST)
 		{
@@ -49,7 +49,7 @@ class Bpjs extends CI_Controller {
 
 				$this->modelBpjs->buat($data);
 				$this->session->set_flashdata('dialogbox','Data berhasil di tambahkan');
-				redirect('admin/bpjs/index');
+				redirect('Admin/Bpjs/index');
 			} else {
 				echo validation_errors();
 			}
@@ -63,7 +63,7 @@ class Bpjs extends CI_Controller {
 		$dataId = $this->modelBpjs->getBy($id);
 		$title  = 'Update BPJS';
 		$konten ='admin_view/bpjs/bpjs_update';
-		$this->load->view('template_admin',
+		$this->load->view('Template_Admin',
 					compact('konten','title','dataId'));
 
 		$this->form_validation->set_rules('jenis','jenis','required|trim');
@@ -85,7 +85,7 @@ class Bpjs extends CI_Controller {
 
 			$this->modelBpjs->ubah($id,$data);
 			$this->session->set_flashdata('dialogbox','Data Berhasil di Ubah');
-			redirect('admin/bpjs/index');
+			redirect('Admin/Bpjs/index');
 		
 		}
 	} //END OF FUNCTION UPDATE 
@@ -96,10 +96,10 @@ class Bpjs extends CI_Controller {
 		if($delData == false )
 		{
 			echo "window.alert('Data Tidak Di Temukan') ";
-			redirect('admin/bpjs/index');
+			redirect('Admin/Bpjs/index');
 		} else {
 			$this->modelBpjs->hapus($id,$Deldata);
-			redirect('admin/bpjs/index');
+			redirect('Admin/Bpjs/index');
 		}
 
 	} // end of function delete 
@@ -111,7 +111,7 @@ class Bpjs extends CI_Controller {
 		$form_action = 'admin/bpjs/generate';
 		$title = 'Input Gaji Bpjs';
 		$konten = 'admin_view/bpjs/form_gajibpjs';
-		$this->load->view('template_admin',compact('title','konten','form_action','pilihNama'));
+		$this->load->view('Template_Admin',compact('title','konten','form_action','pilihNama'));
 
 		$this->form_validation->set_rules('emp_no','Nama Karyawan','required|is_unique[gajibpjs.emp_no]');
 		$this->form_validation->set_rules('gaji_bpjs','gaji bpjs','required|numeric');
@@ -125,7 +125,7 @@ class Bpjs extends CI_Controller {
 					'gaji_bpjs'=>$this->input->post('gaji_bpjs',true),
 			);
 			$this->modelBpjs->buatGajiBpjs($data);
-			redirect('admin/bpjs/getGenerate');
+			redirect('Admin/Bpjs/getGenerate');
 			
 		} else {
 			echo validation_errors(); 
@@ -139,7 +139,7 @@ class Bpjs extends CI_Controller {
 		$title = 'Daftar Gaji Bpjs ';
 		$konten = 'admin_view/bpjs/list_generate';
 		$dataGenerate = $this->modelBpjs->hitungBpjs();
-		$this->load->view('template_admin',compact('title','konten','dataGenerate'));
+		$this->load->view('Template_Admin',compact('title','konten','dataGenerate'));
 
 	} // end of function generate
 
@@ -148,7 +148,7 @@ class Bpjs extends CI_Controller {
 		$title = 'Rincian Data Bpjs';
 		$konten = 'admin_view/bpjs/cetak_generate';
 		$dataGenerate = $this->modelBpjs->hitungBpjs();
-		$this->load->view('template_admin',compact('title','konten','dataGenerate'));
+		$this->load->view('Template_Admin',compact('title','konten','dataGenerate'));
 	}
 
 }

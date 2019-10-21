@@ -16,7 +16,8 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-             <?php echo form_open_multipart("admin/absen/import");?>
+            <center><h3>Upload Absen Karyawan</h3></center>
+             <?php echo form_open_multipart("Admin/Absen/Import");?>
                <?php echo validation_errors()?>
                 <input type="file" name="file" size=""/>
                 <br>

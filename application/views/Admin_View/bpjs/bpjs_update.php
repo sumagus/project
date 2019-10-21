@@ -13,13 +13,11 @@ $pegawai = $dataId->pegawai;
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        User Profile
-      </h1>
+      <center><h3>
+        Update BPJS
+      </h3></center>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
+        <li><a href="<?php echo site_url("Admin/Bpjs/index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
     </section>
      <!-- Main content -->

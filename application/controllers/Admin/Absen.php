@@ -17,7 +17,7 @@ class Absen extends CI_Controller {
     $title = 'Absen Karyawan';    
     $konten = '/admin_view/absen/absenUpload';
     $namaAbsen = $this->modelAbsen->getNama();
-    $this->load->view('template_admin',compact('konten','namaAbsen','title'));    
+    $this->load->view('Template_Admin',compact('konten','namaAbsen','title'));    
   }
 
   public function convertdate($EXCEL_DATE)
@@ -65,7 +65,7 @@ class Absen extends CI_Controller {
     
     $error = array('error' => $this->upload->display_errors());
     $this->session->set_flashdata('msg','Ada kesalahan dalam upload !!'); 
-    redirect('admin/absen'); 
+    redirect('Admin/Absen'); 
    } else {
     
     $media = $this->upload->data();
@@ -114,15 +114,10 @@ class Absen extends CI_Controller {
 
     $this->db->insert('absen',$data);
     $this->session->set_flashdata('msg','Berhasil upload ...!!');   
-
-    //echo '<br>';
-    //print_r($data);
-    //echo var_dump($data);
-    //echo '</br>';
        
     } 
 
-     redirect('admin/Absen');
+     redirect('Admin/Absen');
     }  
  
   }//END OF FUNCTION IMPORT !!
@@ -133,46 +128,16 @@ class Absen extends CI_Controller {
     $title = 'Data Absen Karyawan ';
     $absenUser =$this->modelAbsen->getAll();
     $pilihUser = $this->modelAbsen->selectUser();
-    $this->load->view('template_admin',compact('title','konten','absenUser','pilihUser'));
+    $this->load->view('Template_Admin',compact('title','konten','absenUser','pilihUser'));
   }
 
-  public function viewform()
+  public function getFilter($emp_no,$start,$end)
   {
-    $konten = 'admin_view/absen/perView';
+    $konten = 'admin_view/absen/getView';
     $title = ' Cari Data Absen Karyawan';
     $pilihUser = $this->modelAbsen->selectUser();
-    $this->load->view('template_admin',compact('konten','title','pilihUser')); 
+    $this->load->view('Template_Admin',compact('konten','title','pilihUser')); 
   }
-
-  public function getAbsenPer()
-  {
-    $title = 'Tester ';
-    $konten = 'admin_view/absen/absenPer';
-   
-    //$this->form_validation->set_rules('name','name','required');
-    $this->form_validation->set_rules('start','start','required');
-    $this->form_validation->set_rules('end','end','required'); 
-   
-
-    if($this->form_validation->run())
-    {
-      //$name = $this->input->get('name',true);
-      $start = $this->input->post('start',true);
-      $end = $this->input->post('end',true);
-      $datates=array(
-       // 'name'=>$name,
-        'start'=>$start,
-        'end'=>$end,
-      ); 
-      $data = $this->modelAbsen->getByDate($start,$end);
-     // $count = $this->modelAbsen->getTest();
-      $this->load->view('template_admin',compact('konten','title','data','count','title'));
-     } else {
-      echo validation_errors();
-     }
-   
-
-  }//end of function getAbsenper
 
 
    public function tesQuery()
@@ -184,7 +149,7 @@ class Absen extends CI_Controller {
     $end =$this->input->get('end');
     $data  = $this->modelAbsen->AbsenCount();
     $totalKaryawan = $this->modelAbsen->getTotalKaryawan();
-    $this->load->view('template_admin',compact('data','konten','title','totalKaryawan'));
+    $this->load->view('Template_Admin',compact('data','konten','title','totalKaryawan'));
     
    }
    

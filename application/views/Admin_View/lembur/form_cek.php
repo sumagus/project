@@ -20,76 +20,43 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
-              <?php echo form_open('admin/absen/tesQuery',['method'=>'get'])?>
-              <div class="form-group">
-              <label for="nama" class="col-sm-2 control-label">Nama</label>
-              <div class="col-sm-10">
-              <select name="emp_no" class="form-control" id="emp_no" >
-                <option value="">-Pilih-</option>
-                <?php foreach ($pilihNama as $tampil ):?>
-                <option value="<?php echo $tampil->emp_no?>" ><?php echo $tampil->nama_karyawan?></option>
-              <?php endforeach;?>
-              </select>
-              <?=form_error('start')?>
-              </div>
-              </div> 
-              <br>  
-              <div class="form-group">
-              <label for="start" class="col-sm-2 control-label">Tanggal Awal</label>
-              <div class="col-sm-10">
-              <input type="text"  name="start" class="form-control" id="start" >
-              <?=form_error('start')?>
-              </div>
-              </div> 
-              <br>
-              <div class="form-group">
-              <label for="end" class="col-sm-2 control-label">Tanggal Akhir</label>
-              <div class="col-sm-10">
-              <input type="text"  name="end" class= "form-control" id="end" >
-              <?=form_error('end')?>     
-              </div> 
-              <hr>
-              <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" id="filter" class="btn btn-info">Submit</button>
-              </div>
-              </div>
-              <?php echo form_close()?>
-              </div>
-              <br>
-            <hr>
-            
-            </form>
-             <table class="table table-hover table-bordered" id="tableAbsen">
+            <?php if(isset($dataFilter))?>
+              <table id="" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>Nama</th>
-                    <th>Total Cuti</th>
-                    <th>Total sakit</th>
-                    <th>Total absen</th>
-                    <th>Total unpaid</th>
-                    <th>Total potongan</th>
+                  <th>ID Lembur</th>
+                  <th>ID Karyawan</th>
+                  <th>Nama</th>
+                  <th>Tanggal</th>
+                  <th>Keterangan</th>
+                  <th>Upah </th>
+                  <th>Action </th>
                 </tr>
-                <<tr>
-                  <th><p>Total Karyawan = <?php echo $totalKaryawan?></p></th>
-                </tr>
-              </thead>
-               <tbody>
+                </thead>
+                <?php 
+                 $no=1;
+                 
+                foreach ($dataFilter as $tampil):?>
+               
+                <tbody>
                 <tr>
-                 <?php
-                foreach ($data as $tampil) :?>
-                <td><?php echo $tampil->name?></td>
-                <td><?php echo $tampil->total_cuti?></td>
-                <td><?php echo $tampil->total_sakit?></td>
-                <td><?php echo $tampil->total_absen?></td>
-                <td><?php echo $tampil->total_unpaid?></td>
-                <td><?php echo $tampil->total_unpaid*50000?></td>
+                  <td><?php echo $tampil->id_lembur?></td>
+                  <td><?php echo $tampil->emp_no?></td>
+                  <td><?php echo $tampil->nama_karyawan?></td>
+                  <td><?php echo $tampil->tanggal?></td>
+                  <td><?php echo $tampil->keterangan?></td>
+                  <td><?php echo $tampil->uang_lembur?></td>
+                    
+                    <td>
+                     <a class="btn btn-info btn-sm" href="<?=site_url("admin/lembur/update/$tampil->id_lembur")?>" ><i class="fa fa-edit"></i></a>
+                     <!--<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete"><i class="fa fa-trash-o"></i></a> -->
+                    <a class="btn btn-danger btn-sm" href="<?=site_url("admin/lembur/delete/$tampil->id_lembur")?>" onclick="return confirm('Apakah Anda Yakin')"  ><i class="fa fa-trash-o"></i></a>
+                    </td>
                 </tr>
+                <?php endforeach;?>
+                
                 </tbody>
-                <?php endforeach; ?>  
-                </tr>             
-              </tbody>
-              </table>
+              </table> 
             </div>
             <!-- /.box-body -->
           </div>

@@ -34,7 +34,7 @@
               <hr>
                <div class="row">
                  <div class="col-xs-3">
-                  <?php echo form_open('admin/lembur/getFilter')?>
+                  <?php echo form_open('Admin/Lembur/getFilter')?>
                   <label>Nama </label>
                   <select name ="emp_no" class="form-control">
                   <option value="">-Pilih-</option>
@@ -45,11 +45,11 @@
                 </div>
                 <div class="col-xs-3">
                   <label>Tanggal Awal</label>
-                  <input type="text" name= "start" class="form-control" placeholder="Start" id="start">
+                  <input type="date" name= "start" class="form-control" placeholder="Start" id=""  data-date-end-date="0d">
                 </div>
                   <div class="col-xs-3">
                     <label>Tanggal Akhir</label>
-                  <input type="text"  name ="end" class="form-control" placeholder="End" id="end">
+                  <input type="date"  name ="end" class="form-control" placeholder="End" id="">
                 </div>
               </div>
               <br>
@@ -61,42 +61,7 @@
               <?php echo form_close()?>
               
              <hr>
-              <table id="" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>ID Lembur</th>
-                  <th>ID Karyawan</th>
-                  <th>Nama</th>
-                  <th>Tanggal</th>
-                  <th>Keterangan</th>
-                  <th>Upah </th>
-                  <th>Action </th>
-                </tr>
-                </thead>
-                <?php 
-                 $no=1;
-                 
-                foreach ($dataFilter as $tampil):?>
-               
-                <tbody>
-                <tr>
-                  <td><?php echo $tampil->id_lembur?></td>
-                  <td><?php echo $tampil->emp_no?></td>
-                  <td><?php echo $tampil->nama_karyawan?></td>
-                  <td><?php echo $tampil->tanggal?></td>
-                  <td><?php echo $tampil->keterangan?></td>
-                  <td><?php echo $tampil->uang_lembur?></td>
-                    
-                    <td>
-                     <a class="btn btn-info btn-sm" href="<?=site_url("admin/lembur/update/$tampil->id_lembur")?>" ><i class="fa fa-edit"></i></a>
-                     <!--<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete"><i class="fa fa-trash-o"></i></a> -->
-                    <a class="btn btn-danger btn-sm" href="<?=site_url("admin/lembur/delete/$tampil->id_lembur")?>" onclick="return confirm('Apakah Anda Yakin')"  ><i class="fa fa-trash-o"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach;?>
-                <?php echo $jumlahLembur;?>
-                </tbody>
-              </table>
+            
             </div>
             <!-- /.box-body -->
           </div>

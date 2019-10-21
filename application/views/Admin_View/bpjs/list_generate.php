@@ -4,10 +4,14 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Simple Tables
-        <small>preview of simple tables</small>
-      </h1>
+      <center>
+      <h3>
+       Perhitungan BPJS Karyawan
+      </h3>
+    </center>
+       <ol class="breadcrumb">
+        <li><a href="<?php echo site_url("Admin/Bpjs/Index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      </ol>
     </section>
      
     <!-- Main content -->
@@ -23,7 +27,6 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -47,11 +50,11 @@
                 <tr>
                   <td><?php echo $no++?></td>
                   <td><?php echo $tampil->nama_karyawan ?></td>
-                  <td><?php echo $tampil->gaji_bpjs?></td>
-                  <td><?php echo $tampil->jht_perusahaan ?></td>
-                  <td><?php echo $tampil->jht_karyawan?></td>
-                  <td><?php echo $tampil->jkk_perusahaan?></td>
-                  <td><?php echo $tampil->jk_perusahaan?></td>
+                  <td><?php echo number_format($tampil->gaji_bpjs,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->jht_perusahaan,0,',','.') ?></td>
+                  <td><?php echo number_format($tampil->jht_karyawan,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->jkk_perusahaan,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->jk_perusahaan,0,',','.')?></td>
                 </tr>
               <?php endforeach;?>
               </tbody>

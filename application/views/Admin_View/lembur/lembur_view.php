@@ -33,24 +33,31 @@
               <a href="<?php echo site_url("admin/lembur/inputLembur/")?>" class= "btn btn-primary btn-md">Input Lembur</a>
               <hr>
                <div class="row">
+                <form method="get">
                  <div class="col-xs-3">
-                  <label>Nama </label>
+                  <label>Nama <?php echo $emp_no ?></label>
                   <select name ="emp_no" class="form-control">
                   <option value="">-Pilih-</option>
                   <?php foreach($pilihNama as $tampil):?>
-                  <option value="<?php echo $tampil->emp_no?>"><?php echo $tampil->nama_karyawan?></option>
+                  <option <?php echo ($emp_no == $tampil->emp_no)?"selected":''?> value="<?php echo $tampil->emp_no?>"><?php echo $tampil->nama_karyawan?></option>
                     <?php endforeach;?>
                   </select>
                 </div>
                 <div class="col-xs-3">
                   <label>Tanggal Awal</label>
-                  <input type="text" name= "start" class="form-control" placeholder="start" id="start">
+                  <input type="text" name= "start" class="form-control" placeholder="start" id="start" value="<?php echo $start ?>">
                 </div>
                   <div class="col-xs-3">
                     <label>Tanggal Akhir</label>
-                  <input type="text"  name ="end" class="form-control" placeholder="End" id="end">
+                  <input type="text"  name ="end" class="form-control" placeholder="End" id="end" value="<?php echo $end ?>">
                 </div>
               </div>
+              </div class="row">
+                <div class="col-xs-3">
+                  <button type="submit" class="btn btn-primary btn-md">Filter</button>
+                </div>
+               
+              </form>
              <hr>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -65,7 +72,8 @@
                 </tr>
                 </thead>
                 <?php 
-                 $no=1;
+                 $no=0;
+                 $total=0;
                 foreach ($dataLembur as $tampil):?>
                 <tbody>
                 <tr>
@@ -74,7 +82,9 @@
                   <td><?php echo $tampil->nama_karyawan?></td>
                   <td><?php echo $tampil->tanggal?></td>
                   <td><?php echo $tampil->keterangan?></td>
-                  <td><?php echo $tampil->uang_lembur?></td>
+                  <td><?php echo number_format($tampil->uang_lembur,0,',','.')?></td>
+                  <?php $total+=$tampil->uang_lembur ?>
+                  <?php $no++ ?>
                     <td>
                      <a class="btn btn-info btn-sm" href="<?=site_url("admin/lembur/update/$tampil->id_lembur")?>" ><i class="fa fa-edit"></i></a>
                      <!--<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete"><i class="fa fa-trash-o"></i></a> -->
@@ -83,6 +93,16 @@
                 </tr>
               <?php endforeach?>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="5" align="left"><b>Total</b></td>
+                    <td colspan="3"><b><?php echo number_format($total,0,',','.') ?></b></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" align="left"><b>Jumlah Lembur</b></td>
+                    <td colspan="2"><b><?php echo $no ?></b></td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
             <!-- /.box-body -->

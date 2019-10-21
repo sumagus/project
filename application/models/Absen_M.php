@@ -12,10 +12,30 @@ class Absen_M extends CI_Model {
 		return $query->result();
 	}
 
+	public function filterBY($start ='',$end='',$emp_no='')
+	{
+		if($start!='' && $end!='') 
+		{
+			$where = array(
+				'date >='=> date('y-m-d',strtotime($start)),
+				'data <='=> date('y-m-d',strtotime($end)),
+			);
+			$this->db->where($where);
+		}
+
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
+
+		$query = $this->db->get('absen');
+		return $query->result();
+	}
+
 	public function getNama()
 	{
 		$this->db->distinct();
-		$this->db->select('emp_no,name,date');
+		$this->db->select('emp_no,name');
 		$this->db->from('absen');
 		$this->db->group_by('name');
 		$query = $this->db->get();
@@ -123,18 +143,6 @@ class Absen_M extends CI_Model {
 		$this->db->insert_batch('absen',$data);
 	}
 	
-
-	public function filterBy($start,$end)
-	{
-		$this->db->select('*');
-		$this->db->where('date',$start);
-		$this->db->where('date',$end);
-		$this->db->from('absen');
-		$query = $this->db->get();
-		return $query->result();
-
-	}
-
 
 	public function selectUser()
 	{

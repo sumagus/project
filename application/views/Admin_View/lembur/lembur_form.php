@@ -43,7 +43,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="date" class="form-control pull-right" name="tanggal" id="" value="<?=set_value('tanggal')?>">
+                  <input type="text" class="form-control pull-right" name="tanggal" id="tgl_lembur" value="<?=set_value('tanggal')?>">
                 </div>
               </div>
               <!-- /.form-group -->
@@ -104,7 +104,7 @@
  
  <!-- DatePicker -->
 <script>
-    $('#tanggal').datepicker({
+    $('#tgl_lembur').datepicker({
       viewMonth:true,
       viewYears:true,
       autoclose: true,
@@ -112,8 +112,6 @@
       daysOfWeekDisabled: "0,6",
       todayHighlight : true,
       minDate: "-3",
-      format : 'yyyy-mm-dd',
-      
     });
 
 </script>

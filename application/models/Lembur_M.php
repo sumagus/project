@@ -3,13 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Lembur_M extends CI_Model {
 
-	public function getAll() //menampilkan semua data lembur karyawan 
+	public function getAll($start='',$end='',$emp_no='') //menampilkan semua data lembur karyawan 
 	{
-		$sql = " SELECT lembur.id_lembur,lembur.emp_no,identitas_karyawan.nama_karyawan,lembur.tanggal,lembur.keterangan,.lembur.uang_lembur
-		from lembur
-		inner join identitas_karyawan on  identitas_karyawan.emp_no = lembur.emp_no";
+		if ($start!='' && $end!='')
+		{
+			$where = array(
+				'l.tanggal >=' => date('Y-m-d',strtotime($start)), 
+				'l.tanggal <=' => date('Y-m-d',strtotime($end)), 
+			);
+			$this->db->where($where);
+		}
 
-		$query =$this->db->query($sql);
+		if ($emp_no!='')
+		{
+			$this->db->where('l.emp_no',$emp_no);
+		}
+		// $sql = " SELECT lembur.id_lembur,lembur.emp_no,identitas_karyawan.nama_karyawan,lembur.tanggal,lembur.keterangan,.lembur.uang_lembur
+		// from lembur
+		// inner join identitas_karyawan on  identitas_karyawan.emp_no = lembur.emp_no";
+		// $query =$this->db->query($sql);
+
+		$this->db->join('identitas_karyawan i','l.emp_no = i.emp_no','inner');
+		$query = $this->db->get('lembur l');
+
 		return $query->result();
 	}
 
@@ -93,7 +109,7 @@ class Lembur_M extends CI_Model {
 	} // END OF FUNCTION VALIDASI
 
 
-	public function filterBy()
+	public function filterBy($start,$end,$id)
 	{
 		$sql =" SELECT lembur.id_lembur,
 					   lembur.emp_no,
@@ -105,10 +121,11 @@ class Lembur_M extends CI_Model {
 					   /*sum('jumlah_lembur*uang_lembur')as total_upah*/
 					   from lembur 
 					   INNER JOIN identitas_karyawan ON identitas_karyawan.emp_no = lembur.emp_no
-					   where lembur.emp_no = '30051' AND tanggal BETWEEN '2019-09-20' AND '2019-10-10'
-					    "; 
+					   where lembur.emp_no = '".$id."' AND tanggal BETWEEN '".$start."' AND '".$end."'
+					   "; 
 		$query = $this->db->query($sql);
 		return $query->result();
+		
 
 
 			// test dengan metode lain 
