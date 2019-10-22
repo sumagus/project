@@ -146,21 +146,44 @@ class Absen_M extends CI_Model {
 
 	public function selectUser()
 	{
-		 $this->db->distinct();
-		 $this->db->select('name');
-		 $this->db->order_by('name','asc');
-		 $this->db->from('absen');
-		 $query = $this->db->get();
-		 return $query->result(); 
+		$query = $this->db->order_by('nama_karyawan')
+						->get('identitas_karyawan');
+						return $query->result();
+		 // $this->db->distinct();
+		 // $this->db->select('name');
+		 // $this->db->order_by('name','asc');
+		 // $this->db->from('absen');
+		 // $query = $this->db->get();
+		 // return $query->result(); 
 	}
 	//-----------------------------------------------------------------------------------------------------------------------------------------------------------//
-	public function AbsenCount()
+	public function AbsenCount($start,$end)
 	{
 		
 		$sql = "SELECT *,count(if(unpaid = '1',unpaid,null)) as total_unpaid,count(if(cuti ='1',cuti,null)) as total_cuti,count(if(sakit='1',sakit,null)) as total_sakit,count(if(absen='1',absen,null)) as total_absen
-		from absen group by name";
+		from absen
+		where date BETWEEN '".date('y-m-d',strtotime($start))."' AND '".date('y-m-d',strtotime($end))."'
+		group by name";
 		$query = $this->db->query($sql);
 		return $query->result();
+	}
+
+	public function filterCount($emp_no,$start,$end)
+	{
+		
+		$sql = "SELECT *,count(if(unpaid = '1',unpaid,null)) as total_unpaid,count(if(cuti ='1',cuti,null)) as total_cuti,count(if(sakit='1',sakit,null)) as total_sakit,count(if(absen='1',absen,null)) as total_absen
+		from absen
+		where emp_no ='".$emp_no."' AND date BETWEEN '".date('y-m-d',strtotime($start))."' AND '".date('y-m-d',strtotime($end))."'
+		group by name";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	public function selectUangMakan($emp_no)
+	{
+		$query = $this->db->where('emp_no',$emp_no)
+						->get('gapok');
+						return $query->result();
 	}
 
 	public function getTotalKaryawan()
@@ -169,9 +192,6 @@ class Absen_M extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->row()->totalKaryawan;
 	}
-
-
-	
 
 
 }

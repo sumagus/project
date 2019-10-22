@@ -46,7 +46,7 @@
                   <th>Gapok</th>
                   <th>Uang Makan</th>
                   <th>PTKP</th>
-                  <th><a class="btn btn-primary btn-sm" href="<?=site_url('admin/gapok/create')?>" ><i class="fa fa-plus"></i></a></th>
+                  <th><a class="btn btn-primary btn-sm" href="<?=site_url('Admin/Gapok/create')?>" ><i class="fa fa-plus"></i></a></th>
                 </tr>
               </thead>
                <tbody>
@@ -61,8 +61,8 @@
                   <td><?php echo $tampil->nama_departemen?></td>
                   <td><?php echo $tampil->nama_divisi?></td>
                   <td><?php echo $tampil->nama_cabang?></td>
-                  <td><?php echo $tampil->gapok?></td>
-                  <td><?php echo $tampil->uang_makan?></td>
+                  <td><?php echo number_format($tampil->gapok,0,',','.')?></td>
+                  <td><?php echo number_format($tampil->uang_makan,0,',','.')?></td>
                   <td><?php echo $tampil->ptkp?></td>
                   <td>
                      <a class="btn btn-info btn-sm" href="<?=site_url("admin/gapok/update/$tampil->emp_no")?>" ><i class="fa fa-edit"></i></a>

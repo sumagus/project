@@ -1,17 +1,27 @@
-
+<style type ="text/css">
+body {
+  font-family:arial;
+}
+@media print{  
+  .no-print{
+    display: none;
+  }
+}
+  
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+      <center>
       <h1>
-        User Profile
+        Data Lembur Karyawan
       </h1>
+    </center>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
+        <li><a href="<?php echo site_url('Admin/Lembur')?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
     </section>
      <!-- Main content -->
@@ -30,12 +40,13 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <a href="<?php echo site_url("admin/lembur/inputLembur/")?>" class= "btn btn-primary btn-md">Input Lembur</a>
+              <a href="<?php echo site_url("admin/lembur/inputLembur/")?>" class= "btn btn-primary btn-md no-print">Input Lembur</a>
+              <a href="#" class="no-print btn btn-info" onclick="window.print();">Print / Cetak</a>
               <hr>
                <div class="row">
-                <form method="get">
+                <form method="get" class="no-print">
                  <div class="col-xs-3">
-                  <label>Nama <?php echo $emp_no ?></label>
+                  <label>Nama </label>
                   <select name ="emp_no" class="form-control">
                   <option value="">-Pilih-</option>
                   <?php foreach($pilihNama as $tampil):?>
@@ -54,12 +65,13 @@
               </div>
               </div class="row">
                 <div class="col-xs-3">
-                  <button type="submit" class="btn btn-primary btn-md">Filter</button>
+                  <button type="submit" class="btn btn-primary btn-md no-print">Filter</button>
                 </div>
                
               </form>
              <hr>
               <table id="example2" class="table table-bordered table-hover">
+                <h5> Periode <?php echo $start ?> - <?php echo $end?></h5>
                 <thead>
                 <tr>
                   <th>ID Lembur</th>
@@ -68,7 +80,7 @@
                   <th>Tanggal</th>
                   <th>keterangan</th>
                   <th>Upah </th>
-                  <th>Action </th>
+                  <th class="no-print">Action </th>
                 </tr>
                 </thead>
                 <?php 
@@ -85,7 +97,7 @@
                   <td><?php echo number_format($tampil->uang_lembur,0,',','.')?></td>
                   <?php $total+=$tampil->uang_lembur ?>
                   <?php $no++ ?>
-                    <td>
+                    <td class="no-print">
                      <a class="btn btn-info btn-sm" href="<?=site_url("admin/lembur/update/$tampil->id_lembur")?>" ><i class="fa fa-edit"></i></a>
                      <!--<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete"><i class="fa fa-trash-o"></i></a> -->
                     <a class="btn btn-danger btn-sm" href="<?=site_url("admin/lembur/delete/$tampil->id_lembur")?>" onclick="return confirm('Apakah Anda Yakin')"  ><i class="fa fa-trash-o"></i></a>

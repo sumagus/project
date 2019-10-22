@@ -7,10 +7,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Simple Tables
-        <small>preview of simple tables</small>
-      </h1>
+    
    <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -22,7 +19,7 @@
                 <input type="file" name="file" size=""/>
                 <br>
                 <input type="submit" value="upload" class="btn btn-info btn-sm" />
-                <a class="btn btn-info btn-sm" href="<?php echo site_url('admin/absen/tesQuery')?>">Lihat Absen</a>
+                <a class="btn btn-info btn-sm" href="<?php echo site_url('admin/absen/getAllAbsen')?>">Lihat Absen</a>
                 <?php echo form_close()?>
             <div class="box-header">
             </div>
@@ -45,9 +42,6 @@
                     <th>Late</th><th>Late < 60</th><th>Late > 60</th>
                     <th>Early</th><th>Absen</th><th>Sakit</th><th>Cuti</th>
                     <th>Unpaid</th><th>50000</th><th>Keterangan</th>-->
-                  <th>
-                    Action
-                  </th>
                 </tr>
               </thead>
                <tbody>
@@ -58,10 +52,6 @@
                   <td><?php echo $no++?></td>
                   <td><?php echo $tampil->emp_no ?></td>
                   <td><?php echo $tampil->name?></td>
-                  
-                  <td>
-                     <a class="btn btn-info btn-sm" href="<?=site_url("admin/absen/viewBy/$tampil->emp_no")?>" ><i class="fa fa-edit"></i></a>
-                    </td>
                 </tr>
               <?php endforeach?>
               </tbody>

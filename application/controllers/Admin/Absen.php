@@ -16,8 +16,9 @@ class Absen extends CI_Controller {
   {
     $title = 'Absen Karyawan';    
     $konten = '/admin_view/absen/absenUpload';
+    $totalKaryawan = $this->modelAbsen->getTotalKaryawan();
     $namaAbsen = $this->modelAbsen->getNama();
-    $this->load->view('Template_Admin',compact('konten','namaAbsen','title'));    
+    $this->load->view('Template_Admin',compact('konten','title','namaAbsen','$totalKaryawan'));    
   }
 
   public function convertdate($EXCEL_DATE)
@@ -124,36 +125,27 @@ class Absen extends CI_Controller {
 
   public function getAllAbsen()
   {
-    $konten = 'admin_view/absen/absenView';
+    $start =$this->input->get('start');
+    $end = $this->input->get('end');
+    $konten = 'admin_view/absen/viewAll';
     $title = 'Data Absen Karyawan ';
-    $absenUser =$this->modelAbsen->getAll();
+    $absenAllUser =$this->modelAbsen->AbsenCount($start,$end);
     $pilihUser = $this->modelAbsen->selectUser();
-    $this->load->view('Template_Admin',compact('title','konten','absenUser','pilihUser'));
+    $this->load->view('Template_Admin',compact('title','konten','absenAllUser','pilihUser','start','end'));
   }
 
-  public function getFilter($emp_no,$start,$end)
+  public function Filter()
   {
+    $start =$this->input->get('start');
+    $end = $this->input->get('end');
+    $emp_no = $this->input->get('emp_no');
     $konten = 'admin_view/absen/getView';
     $title = ' Cari Data Absen Karyawan';
+    $uangMakan = $this->modelAbsen->selectUangMakan($emp_no);
+    $filterAbsen = $this->modelAbsen->filterCount($emp_no,$start,$end);
     $pilihUser = $this->modelAbsen->selectUser();
-    $this->load->view('Template_Admin',compact('konten','title','pilihUser')); 
+    $this->load->view('Template_Admin',compact('konten','title','pilihUser','emp_no','start','end','filterAbsen','$uangMakan')); 
   }
-
-
-   public function tesQuery()
-   {
-
-    $konten = 'admin_view/absen/testview';
-    $title = 'Data Absen Karyawan';
-    $start= $this->input->get('start');
-    $end =$this->input->get('end');
-    $data  = $this->modelAbsen->AbsenCount();
-    $totalKaryawan = $this->modelAbsen->getTotalKaryawan();
-    $this->load->view('Template_Admin',compact('data','konten','title','totalKaryawan'));
-    
-   }
-   
   
-
 
 }

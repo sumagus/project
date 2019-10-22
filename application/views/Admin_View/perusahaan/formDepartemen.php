@@ -4,10 +4,15 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Simple Tables
-        <small>preview of simple tables</small>
-      </h1>
+      <center>
+      <h3>
+        Form Input Departemen
+      </h3>
+    </center>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo site_url("Admin/Departemen")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        
+      </ol>
     </section>
 
     <!-- Main content -->
@@ -16,7 +21,6 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
               <div class="login-box">
                 <div class="login-box-body">
                   <h3 class="login-box-msg">Create Departemen </h3>

@@ -3,12 +3,15 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-     <section class="content-header">
-      <h1>
-         CABANG PERUSAHAAN
-      </h1>
-       <ol class="breadcrumb">
-        <li><a href="<?php echo base_url("index.php/admin/cabang/index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      <section class="content-header">
+      <center>
+      <h3>
+        Form Input Cabang Perusahaan
+      </h3>
+    </center>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo site_url("Admin/Cabang")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        
       </ol>
     </section>
 

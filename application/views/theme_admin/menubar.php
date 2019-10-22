@@ -30,7 +30,7 @@ $email = $this->session->userdata('email');
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url("asset/dist/img/avatar5.png")?>" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url("asset/dist/img/avatar5.png")?>" class="img-circle" alt="User Image">-->
 
                 <p>
                   login As <?php echo $username?> - 
@@ -39,12 +39,12 @@ $email = $this->session->userdata('email');
               </li>
               <!-- Menu Footer-->
               <li class="user-footer"> 
-                <div class="pull-left">
+               <!-- <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo site_url('login/logout')?>" class="btn btn-default btn-flat">Sign out</a>
-                </div>
+                </div> -->
+               <!-- <div class="pull-right">-->
+                  <a href="<?php echo site_url('login/logout')?>" class="btn btn-default btn-lg btn-block">Sign out</a>
+              <!--  </div>-->
               </li>
             </ul>
           </li>

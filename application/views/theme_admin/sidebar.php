@@ -10,10 +10,10 @@ $level = $this->session->userdata('level');
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-         <li><a href="<?php echo site_url('Admin/home')?>"><i class="fa fa-align-justify text-aqua"></i> <span>Dashboard</span></a></li>
+         <li><a href="<?php echo site_url('Admin/Home')?>"><i class="fa fa-align-justify text-aqua"></i> <span>Dashboard</span></a></li>
          
          <?php if ($level =='1' || $level=='2') :?>
-          <li><a href="<?php echo site_url('Admin/user')?>"><i class="fa fa-user text-aqua"></i> <span>User</span></a></li>
+          <li><a href="<?php echo site_url('Admin/User')?>"><i class="fa fa-user text-aqua"></i> <span>User</span></a></li>
         <?php endif ;?>
         <li class="treeview">
           <a href="#">
@@ -24,9 +24,9 @@ $level = $this->session->userdata('level');
           </a>
           <ul class="treeview-menu">
             <li class=""><a href="<?php echo site_url('Admin/Departemen/index')?>"><i class="fa fa-circle-o text-aqua"></i> Departemen</a></li>
-            <li><a href="<?php echo site_url('Admin/divisi/index')?>"><i class="fa fa-circle-o text-aqua"></i> Divisi</a></li>
-             <li><a href="<?php echo site_url('Admin/cabang/index')?>"><i class="fa fa-circle-o text-aqua"></i> Cabang</a></li>
-            <li><a href="<?php echo site_url('Admin/jabatan/index')?>"><i class="fa fa-circle-o text-aqua"></i> Jabatan</a></li>
+            <li><a href="<?php echo site_url('Admin/Divisi/index')?>"><i class="fa fa-circle-o text-aqua"></i> Divisi</a></li>
+             <li><a href="<?php echo site_url('Admin/Cabang/index')?>"><i class="fa fa-circle-o text-aqua"></i> Cabang</a></li>
+            <li><a href="<?php echo site_url('Admin/Jabatan/index')?>"><i class="fa fa-circle-o text-aqua"></i> Jabatan</a></li>
             
           </ul>
         </li>
@@ -38,9 +38,9 @@ $level = $this->session->userdata('level');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('Admin/karyawan/index')?>"><i class="fa fa-circle-o text-aqua"></i> Data Karyawan</a></li>
+            <li><a href="<?php echo site_url('Admin/Karyawan/index')?>"><i class="fa fa-circle-o text-aqua"></i> Data Karyawan</a></li>
              <li><a href="<?php echo site_url('Admin/employee/index')?>"><i class="fa fa-circle-o text-aqua"></i> Add Karyawan</a></li>
-            <li><a href="<?php echo site_url('Admin/gapok/index')?>"><i class="fa fa-circle-o text-aqua"></i> Gaji</a></li>
+            <li><a href="<?php echo site_url('Admin/Gapok/index')?>"><i class="fa fa-circle-o text-aqua"></i> Gaji</a></li>
           </ul>
         </li>
          <li class="treeview">
@@ -51,7 +51,8 @@ $level = $this->session->userdata('level');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href="<?php echo site_url('Admin/absen')?>"><i class="fa fa-circle-o text-aqua"></i> Absen</a></li>
+            <li class=""><a href="<?php echo site_url('Admin/Absen')?>"><i class="fa fa-circle-o text-aqua"></i>Upload Absen</a></li>
+             <li class=""><a href="<?php echo site_url('Admin/Absen/Filter')?>"><i class="fa fa-circle-o text-aqua"></i>Filter Absen</a></li>
             
           </ul>
         </li>
@@ -75,8 +76,8 @@ $level = $this->session->userdata('level');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href="<?php echo site_url('Admin/lembur/index')?>"><i class="fa fa-circle-o text-aqua"></i> Data Lembur</a></li>
-            <li><a href="<?php echo site_url('Admin/lembur/inputLembur')?>"><i class="fa fa-circle-o text-aqua"></i> input Lembur</a></li>
+            <li class=""><a href="<?php echo site_url('Admin/Lembur/index')?>"><i class="fa fa-circle-o text-aqua"></i> Data Lembur</a></li>
+            <li><a href="<?php echo site_url('Admin/Lembur/inputLembur')?>"><i class="fa fa-circle-o text-aqua"></i> input Lembur</a></li>
           </ul>
         </li>
         <?php if($level == '1' || $level == '2'):?>

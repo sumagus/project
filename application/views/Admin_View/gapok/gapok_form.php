@@ -5,13 +5,11 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        User Profile
-      </h1>
+     <center> <h3>
+       Input Gaji Karyawan
+      </h3></center>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
+        <li><a href="<?php echo site_url("Admin/Gapok/index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
     </section>
      <!-- Main content -->
@@ -20,7 +18,6 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Gaji Karyawan</h3>
             </div>
             <!-- /.box-header -->
             <?php echo form_open('admin/gapok/create',['method'=>'POST'])?>
@@ -103,12 +100,6 @@
                 <label for="">Uang Makan</label>
                 <?php echo form_error('uang_makan')?>
                 <input type="text" class="form-control" name="uang_makan" id="uang_makan" placeholder="">
-              </div>
-              <!-- /.form-group -->
-              <div class="form-group">
-                <label for="">Gaji Harian </label>
-                <?php echo form_error('gaji_harian')?>
-                <input type="text" class="form-control" name="gaji_harian" id="gaji_harian " placeholder="">
               </div>
               <!-- /.form-group -->
               

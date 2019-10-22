@@ -9,7 +9,6 @@ body {
 }
   
 </style>
-
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
@@ -37,15 +36,6 @@ body {
               <hr>
                <div class="row">
                 <form method="get">
-                 <div class="col-xs-3">
-                  <label>Nama <?php echo $emp_no ?></label>
-                  <select name ="emp_no" class="form-control">
-                  <option value="">-Pilih-</option>
-                  <?php foreach($pilihUser as $tampil):?>
-                  <option <?php echo ($emp_no == $tampil->emp_no)?"selected":''?> value="<?php echo $tampil->emp_no?>"><?php echo $tampil->nama_karyawan?></option>
-                    <?php endforeach;?>
-                  </select>
-                </div>
                 <div class="col-xs-3">
                   <label>Tanggal Awal</label>
                   <input type="text" name= "start" class="form-control" placeholder="Start" id="start" value="<?php echo $start ?>">
@@ -55,8 +45,8 @@ body {
                   <input type="text"  name ="end" class="form-control" placeholder="End" id="end" value="<?php echo $end ?>">
                 </div>
               </div>
-              </div class="row no-print">
-                <div class="col-xs-3">
+              </div class="row">
+                <div class="col-xs-3 no-print">
                   <button type="submit" class="btn btn-primary btn-md">Filter</button>
                 </div>
                
@@ -76,7 +66,7 @@ body {
                 <?php 
                  $no=0;
                  $total=0;
-                foreach ($filterAbsen as $tampil):?>
+                foreach ($absenAllUser as $tampil):?>
                 <tbody>
                 <tr>
                 <td><?php echo $tampil->name?></td>
@@ -86,18 +76,16 @@ body {
                 <td><?php echo $tampil->total_unpaid?></td>
                 <td><?php echo $tampil->total_unpaid*50000?></td>
                 </tr>
+                <?php $total +=$tampil->total_unpaid*50000 ?>
               <?php endforeach?>
                 </tbody>
-                <!--<tfoot>
+                <tfoot>
                   <tr>
-                    <td colspan="5" align="left"><b>Total</b></td>
+                    <td colspan="5" align="left"><b>Total Potongan Periode <?php echo $start ?> -  <?php echo $end?></b></td>
                     <td colspan="3"><b><?php echo number_format($total,0,',','.') ?></b></td>
                   </tr>
-                  <tr>
-                    <td colspan="5" align="left"><b>Jumlah </b></td>
-                    <td colspan="2"><b><?php echo $no ?></b></td>
-                  </tr>
-                </tfoot>-->
+                  
+                </tfoot>
               </table>
             </div>
             <!-- /.box-body -->

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class jabatan extends CI_Controller {
+class Jabatan extends CI_Controller {
 
 	public function  __construct()
 	{
@@ -24,7 +24,7 @@ class jabatan extends CI_Controller {
 		$title ='jabatan';
 		$allData = $this->modeljabatan->getAll(); 
 		$konten = 'admin_view/perusahaan/jabatan';
-		$this->load->view('template_admin',compact('konten','allData','title'));
+		$this->load->view('Template_Admin',compact('konten','allData','title'));
 	}
 
 	public function create()
@@ -39,7 +39,7 @@ class jabatan extends CI_Controller {
 			$konten = 'admin_view/perusahaan/formjabatan';
 			$form_action = 'admin/jabatan/create';
 			$this->session->set_flashdata('dialogbox','error');
-			$this->load->view('template_admin',compact('konten','form_action','title'));
+			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 
 			$data = array(
@@ -49,7 +49,7 @@ class jabatan extends CI_Controller {
 			$this->load->model('jabatan_M');
 			$this->jabatan_M->buat($data);
 			$this->session->set_flashdata('dialogbox','jabatan berhasil di buat');
-			redirect('admin/jabatan/index');
+			redirect('Admin/Jabatan/index');
 		}
 	}
 
@@ -62,7 +62,7 @@ class jabatan extends CI_Controller {
 			$dataId = $this->modeljabatan->getBy($id);
 			$konten ='admin_view/perusahaan/updatejabatan';
 			$form_action ='admin/jabatan/update/'.$id;
-			$this->load->view('template_admin',compact('dataId','konten','form_action','title'));
+			$this->load->view('Template_Admin',compact('dataId','konten','form_action','title'));
 
 		} else {
 			$data = array(
@@ -71,7 +71,7 @@ class jabatan extends CI_Controller {
 			);
 			 $this->modeljabatan->ubah($id,$data);
 			 $this->session->set_flashdata('dialogbox',' data berhasil di ubah ');
-			 redirect('admin/jabatan');
+			 redirect('Admin/Jabatan');
 		}
 	}
 
@@ -83,7 +83,7 @@ class jabatan extends CI_Controller {
 		echo "Data Tidak ditemukan";
 		} 
 		$this->modeljabatan->hapus($id,$delData);
-		redirect('admin/jabatan/index');	
+		redirect('Admin/Jabatan/index');	
 	}
 
 

@@ -13,15 +13,15 @@ $level = $dataId->level;
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Advanced Form Elements
-        <small>Preview</small>
-      </h1>
+     <section class="content-header">
+      <center>
+      <h3>
+        Update Data User
+      </h3>
+    </center>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">Advanced Elements</li>
+        <li><a href="<?php echo site_url("Admin/User")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        
       </ol>
     </section>
 
@@ -30,8 +30,9 @@ $level = $dataId->level;
       <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">Form User</h3>
-
+          <center>
+          <h3 class="box-title">Form Update</h3>
+        </center>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
           </div>
