@@ -43,7 +43,7 @@ $email = $this->session->userdata('email');
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div> -->
                <!-- <div class="pull-right">-->
-                  <a href="<?php echo site_url('login/logout')?>" class="btn btn-default btn-lg btn-block">Sign out</a>
+                  <a href="<?php echo site_url('Login/Logout')?>" class="btn btn-default btn-lg btn-block">Sign out</a>
               <!--  </div>-->
               </li>
             </ul>

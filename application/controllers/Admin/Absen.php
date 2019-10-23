@@ -15,7 +15,7 @@ class Absen extends CI_Controller {
   public function index()
   {
     $title = 'Absen Karyawan';    
-    $konten = '/admin_view/absen/absenUpload';
+    $konten = '/Admin_View/Absen/AbsenUpload';
     $totalKaryawan = $this->modelAbsen->getTotalKaryawan();
     $namaAbsen = $this->modelAbsen->getNama();
     $this->load->view('Template_Admin',compact('konten','title','namaAbsen','$totalKaryawan'));    
@@ -127,7 +127,7 @@ class Absen extends CI_Controller {
   {
     $start =$this->input->get('start');
     $end = $this->input->get('end');
-    $konten = 'admin_view/absen/viewAll';
+    $konten = 'Admin_View/Absen/ViewAll';
     $title = 'Data Absen Karyawan ';
     $absenAllUser =$this->modelAbsen->AbsenCount($start,$end);
     $pilihUser = $this->modelAbsen->selectUser();
@@ -139,7 +139,7 @@ class Absen extends CI_Controller {
     $start =$this->input->get('start');
     $end = $this->input->get('end');
     $emp_no = $this->input->get('emp_no');
-    $konten = 'admin_view/absen/getView';
+    $konten = 'Admin_View/Absen/GetView';
     $title = ' Cari Data Absen Karyawan';
     $uangMakan = $this->modelAbsen->selectUangMakan($emp_no);
     $filterAbsen = $this->modelAbsen->filterCount($emp_no,$start,$end);
