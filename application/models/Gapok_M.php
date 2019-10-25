@@ -12,7 +12,7 @@ class Gapok_M extends CI_Model {
 					   cabang.nama_cabang,
 					   jabatan.jabatan,
 					   pajak_karyawan.ptkp,
-					   gapok,uang_makan,gaji_harian
+					   gapok,uang_makan
 		FROM gapok
 		INNER JOIN identitas_karyawan ON identitas_karyawan.emp_no = gapok.emp_no
 		INNER JOIN jabatan ON jabatan.id_jabatan = gapok.id_jabatan
@@ -32,6 +32,21 @@ class Gapok_M extends CI_Model {
 	 	{
 	 		return $query->row();
 	 	}
+	 }
+
+	 public function getId()
+	 {
+	 	$this->db->select("*");
+	 	$this->db->from('gapok');
+	 	$this->db->join('identitas_karyawan','identitas_karyawan.emp_no = gapok.emp_no','inner');
+	 	$this->db->join('departemen','departemen.id_departemen = gapok.id_departemen','inner');
+	 	$this->db->join('divisi','divisi.id_divisi = gapok.id_divisi','innner');
+	 	$this->db->join('cabang','cabang.id_cabang = gapok.id_cabang','inner');
+	 	$this->db->join('jabatan','jabatan.id_jabatan = gapok.id_jabatan','inner');
+	 	$query = $this->db->get();
+
+	 	return $query->result();
+
 	 }
 
 	public function selectDepartemen()

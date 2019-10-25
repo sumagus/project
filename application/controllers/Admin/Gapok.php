@@ -51,7 +51,7 @@ class Gapok extends CI_Controller {
 			$this->form_validation->set_rules('id_jabatan','jabatan','required');
 			$this->form_validation->set_rules('gapok','gapok','required|numeric');
 			$this->form_validation->set_rules('uang_makan','uang makan','required|numeric');
-			$this->form_validation->set_rules('gaji_harian','gaji harian','required|numeric');
+			//$this->form_validation->set_rules('gaji_harian','gaji harian','required|numeric');
 		//	$this->form_validation->set_rules('id_ptkp','id_ptkp','required');
 			$this->form_validation->set_error_delimiters('<p class ="text-red">');
 
@@ -64,7 +64,7 @@ class Gapok extends CI_Controller {
 					'id_jabatan'=>$this->input->post('id_jabatan',true),
 					'gapok'=>$this->input->post('gapok',true),
 					'uang_makan'=>$this->input->post('uang_makan',true),
-					'gaji_harian'=>$this->input->post('gaji_harian',true),
+				//	'gaji_harian'=>$this->input->post('gaji_harian',true),
 				//	'id_ptkp'=>$this->input->post('id_ptkp',true),
 				);
 				$this->modelGapok->buat($data);
@@ -84,14 +84,14 @@ class Gapok extends CI_Controller {
 		
 			$title = 'Form Update Gaji Karyawan';
 			$konten = 'admin_view/gapok/gapok_update';
-			$dataId = 
+			$dataId = $this->modelGapok->getId($id);
 			$pilihDepartemen = $this->modelGapok->selectdepartemen();
 			$pilihJabatan =  $this->modelGapok->selectJabatan();
 			$pilihDivisi =  $this->modelGapok->selectDivisi();
 			$pilihCabang =  $this->modelGapok->selectCabang();
 			$pilihNama = $this->modelGapok->selectNama();
 			$dataGaji = $this->modelGapok->getDataGaji();
-			$this->load->view('template_admin',compact('title','konten','pilihDepartemen','pilihCabang','pilihDivisi','pilihJabatan','pilihNama','dataGaji'));
+			$this->load->view('template_admin',compact('title','konten','pilihDepartemen','pilihCabang','pilihDivisi','pilihJabatan','pilihNama','dataGaji','dataId'));
 
 		
 
@@ -102,7 +102,7 @@ class Gapok extends CI_Controller {
 			$this->form_validation->set_rules('id_jabatan','jabatan','required');
 			$this->form_validation->set_rules('gapok','gapok','required|numeric');
 			$this->form_validation->set_rules('uang_makan','uang makan','required|numeric');
-			$this->form_validation->set_rules('gaji_harian','gaji harian','required|numeric');
+		//	$this->form_validation->set_rules('gaji_harian','gaji harian','required|numeric');
 			$this->form_validation->set_error_delimiters('<p class ="text-red">');
 
 			if($this->form_validation->run()){

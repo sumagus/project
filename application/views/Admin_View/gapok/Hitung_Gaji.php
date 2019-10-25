@@ -17,7 +17,7 @@ body {
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Absen Karyawan
+        Perhitungan Gaji Karyawan
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url("Admin/Absen")?>"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -29,7 +29,7 @@ body {
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Absen Karyawan</h3>
+              <h3 class="box-title">Perhitungan Gaji Karyawan Karyawan</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -41,7 +41,7 @@ body {
                   <label>Nama <?php echo $emp_no ?></label>
                   <select name ="emp_no" class="form-control">
                   <option value="">-Pilih-</option>
-                  <?php foreach($pilihUser as $tampil):?>
+                  <?php foreach($pilihNama as $tampil):?>
                   <option <?php echo ($emp_no == $tampil->emp_no)?"selected":''?> value="<?php echo $tampil->emp_no?>"><?php echo $tampil->nama_karyawan?></option>
                     <?php endforeach;?>
                   </select>
@@ -66,28 +66,33 @@ body {
                 <thead>
                 <tr>
                     <th>Nama</th>
-                    <th>Total Cuti</th>
-                    <th>Total sakit</th>
-                    <th>Total absen</th>
-                    <th>Total unpaid</th>
-                    <th>Total potongan</th>
+                    <th>Gapok</th>
+                    <th>Total Lembur</th>
+                    <th>Total Tunjangan</th>
+                    <th>Total Potongan</th>
+                    <th>Total JHT Karyawan</th>
+                    <th>Total JKK Perusahaan</th>
+                    <th>Total JK Perusahaan</th>
                 </tr>
                 </thead>
-                <?php 
-                 $no=0;
-                 $total=0;
-                foreach ($filterAbsen as $tampil):?>
-                <tbody>
-                <tr>
-                <td><?php echo $tampil->name?></td>
-                <td><?php echo $tampil->total_cuti?></td>
-                <td><?php echo $tampil->total_sakit?></td>
-                <td><?php echo $tampil->total_absen?></td>
-                <td><?php echo $tampil->total_unpaid?></td>
-                <td><?php echo $tampil->total_unpaid*50000?></td>
-                </tr>
-              <?php endforeach?>
-                </tbody>
+               <tbody>
+                <?php foreach($pilihNama as $tampil):?>
+                  <?php $gaji = isset($gapok[$tampil->emp_no])?$gapok[$tampil->emp_no]:0; ?>
+                <tr> 
+                  <td><?php echo $tampil->emp_no.' | '.$tampil->nama_karyawan ?></td>
+                  <td><?= $gaji ?></td>
+                  <td><?= isset($lembur[$tampil->emp_no])?$lembur[$tampil->emp_no]:0 ?></td>
+                  <td><?= isset($tunjangan[$tampil->emp_no])?$tunjangan[$tampil->emp_no]:0 ?></td>
+                  <td><?= isset($potongan[$tampil->emp_no])?$potongan[$tampil->emp_no]:0?></td> 
+                  <td><?= $gaji*0.020 ?></td>
+                  <td><?= $gaji*0.024 ?></td>
+                  <td><?= $gaji*0.03 ?></td>
+                  <td></td>
+                </tr> 
+              <?php endforeach; ?>
+               </tbody>
+               
+                
                 <!--<tfoot>
                   <tr>
                     <td colspan="5" align="left"><b>Total</b></td>

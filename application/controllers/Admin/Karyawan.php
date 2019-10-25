@@ -35,7 +35,7 @@ class Karyawan extends CI_Controller {
 		{	
 			$title = 'Create Identitas Karyawan';	
 			$konten ='Admin_View/karyawan/karyawan_form';
-			$form_action ='Admin/karyawan/createIdentitas';
+			$form_action ='Admin/Karyawan/createIdentitas';
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 				

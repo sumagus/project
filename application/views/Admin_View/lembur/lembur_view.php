@@ -30,7 +30,9 @@ body {
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
+              <center>
               <h3 class="box-title">Data Lembur Karyawan</h3>
+            </center>
               <?php if($this->session->flashdata('dialogbox')):?>
                 <div class="alert alert-info alert-dismissible">
                   <button type="button"  class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -44,7 +46,7 @@ body {
               <a href="#" class="no-print btn btn-info" onclick="window.print();">Print / Cetak</a>
               <hr>
                <div class="row">
-                <form method="get" class="no-print">
+                <form method="get" class="no-print" autocomplete="off">
                  <div class="col-xs-3">
                   <label>Nama </label>
                   <select name ="emp_no" class="form-control">

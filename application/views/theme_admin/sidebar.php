@@ -90,7 +90,7 @@ $level = $this->session->userdata('level');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href="index.html"><i class="fa fa-circle-o text-aqua"></i> Dashboard v1</a></li>
+            <li class=""><a href="<?php echo site_url("Admin/Laporan")?>"><i class="fa fa-circle-o text-aqua"></i> Dashboard v1</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o text-aqua"></i> Dashboard v2</a></li>
           </ul>
         </li>

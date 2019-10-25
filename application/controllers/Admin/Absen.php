@@ -136,6 +136,7 @@ class Absen extends CI_Controller {
 
   public function Filter()
   {
+
     $start =$this->input->get('start');
     $end = $this->input->get('end');
     $emp_no = $this->input->get('emp_no');
@@ -145,6 +146,7 @@ class Absen extends CI_Controller {
     $filterAbsen = $this->modelAbsen->filterCount($emp_no,$start,$end);
     $pilihUser = $this->modelAbsen->selectUser();
     $this->load->view('Template_Admin',compact('konten','title','pilihUser','emp_no','start','end','filterAbsen','$uangMakan')); 
+    
   }
   
 

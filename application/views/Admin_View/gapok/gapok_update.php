@@ -1,10 +1,3 @@
-<?php 
-$emp_no =$dataGaji->emp_no;
-$gapok =$dataGaji->gapok;
-$uang_makan =$dataGaji->uang_makan;
-$gaji_harian = $dataGaji->uang_harian;
-
-?>
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -12,13 +5,11 @@ $gaji_harian = $dataGaji->uang_harian;
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        User Profile
-      </h1>
+     <center> <h3>
+       Input Gaji Karyawan
+      </h3></center>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
+        <li><a href="<?php echo site_url("Admin/Gapok/index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
     </section>
      <!-- Main content -->
@@ -27,10 +18,9 @@ $gaji_harian = $dataGaji->uang_harian;
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Gaji Karyawan</h3>
             </div>
             <!-- /.box-header -->
-            <?php echo form_open('admin/gapok/update/$dataId->emp_no',['method'=>'POST'])?>
+            <?php echo form_open('admin/gapok/create',['method'=>'POST'])?>
             <div class="box-body">
                    <div class="row">
             <div class="col-md-12">
@@ -38,9 +28,9 @@ $gaji_harian = $dataGaji->uang_harian;
                 <label for="">Nama </label>
                 <?php echo form_error('emp_no')?>
                  <select name="emp_no" class="form-control">
-                  <option value="">-pilih-</option>
+                  <option value=""><?php echo $nama?></option>
                   <?php foreach($pilihNama as $tampil):?>
-                  <option value="<?=$emp_no?>"><?php echo $tampil->nama_karyawan?></option>   
+                  <option value="<?php echo $tampil->emp_no?>"><?php echo $tampil->nama_karyawan?></option>   
                   <?php endforeach ;?>                
                  </select>
               </div>
@@ -49,7 +39,7 @@ $gaji_harian = $dataGaji->uang_harian;
                 <label for="">Departemen</label>
                 <?php echo form_error('id_departemen')?>
                  <select name="id_departemen" class="form-control">
-                  <option value="">-Pilih-</option>
+                  <option value=""><?php echo $dataId->id_departemen?></option>
                   <?php foreach($pilihDepartemen as $tampil):?>
                    <option value="<?php echo $tampil->id_departemen?>" ><?php echo $tampil->nama_departemen?></option>
                  <?php endforeach;?>
@@ -60,7 +50,7 @@ $gaji_harian = $dataGaji->uang_harian;
                 <label>Divisi </label>
                 <?php echo form_error('id_divisi')?>
                   <select name="id_divisi" class="form-control">
-                    <option value="">-Pilih-</option>
+                    <option value=""><?php echo $dataId->id_divisi?></option>
                     <?php foreach($pilihDivisi as $tampil):?>
                    <option value="<?php echo $tampil->id_divisi?>"><?php echo $tampil->nama_divisi?></option>
                  <?php endforeach;?>
@@ -79,7 +69,7 @@ $gaji_harian = $dataGaji->uang_harian;
               </div>
               <!-- /.form-group -->
               <div class="form-group">
-                <label for="aktifitas" >Jabatan</label>
+                <label for="jabatan" >Jabatan</label>
                 <?php echo form_error('id_jabatan')?>
                  <select name="id_jabatan" class="form-control">
                   <option value="">-Pilih-</option>
@@ -89,22 +79,27 @@ $gaji_harian = $dataGaji->uang_harian;
                  </select>         
               </div>
               <!-- /.form-group -->
+            <!--  <div class="form-group">
+                <label for="ptkp" >ptkp</label>
+                <?php echo form_error('id_ptkp')?>
+                 <select name="id_ptkp" class="form-control">
+                  <option value="">-Pilih-</option>
+                  <?php foreach($pilihPtkp as $tampil):?>
+                   <option value="<?php echo $tampil->id_ptkp?>"><?php echo $tampil->ptkp?></option>
+                 <?php endforeach;?>
+                 </select>         
+              </div>-->
+              <!-- /.form-group -->
               <div class="form-group">
                 <label for="">Gapok</label>
                 <?php echo form_error('gapok')?>
-                <input type="text" class="form-control" name="gapok" id="gapok" value="<?=$gapok?>">
+                <input type="text" class="form-control" name="gapok" id="gapok" placeholder="">
               </div>
               <!-- /.form-group -->
                <div class="form-group">
                 <label for="">Uang Makan</label>
                 <?php echo form_error('uang_makan')?>
-                <input type="text" class="form-control" name="uang_makan" id="uang_makan" value="<?=$uang_makan?>">
-              </div>
-              <!-- /.form-group -->
-              <div class="form-group">
-                <label for="">Gaji Harian </label>
-                <?php echo form_error('gaji_harian')?>
-                <input type="text" class="form-control" name="gaji_harian" id="gaji_harian "value="<?=$gaji_harian?>">
+                <input type="text" class="form-control" name="uang_makan" id="uang_makan" placeholder="">
               </div>
               <!-- /.form-group -->
               
