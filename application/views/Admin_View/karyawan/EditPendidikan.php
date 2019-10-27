@@ -1,10 +1,15 @@
-<?php 
-    $emp_no = $dataId->emp_no;
-    $nama = $dataId->nama_karyawan;
-    $tempat_lahir = $dataPersonal->tempat_lahir;
-    $tanggal_lahir = $dataPersonal->tanggal_lahir;
-    $marital_status = $dataPersonal->marital_status;
-    $agama =$dataPersonal->agama;
+<?php
+$email = $dataKontak->email;
+$no_telp = $dataKontak->no_telp;
+$mobile = $dataKontak->mobile;
+$alamat_tinggal = $dataKontak->alamat_tinggal;
+$alamat_ktp =$dataKontak->alamat_ktp;
+$kota = $dataKontak->kota;
+$provinsi =$dataKontak->provinsi;
+?>
+
+
+
 
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -15,7 +20,6 @@
     <section class="content-header">
       <h1>
         User Profile
-       
       </h1>
     </section>
 
@@ -51,12 +55,12 @@
            <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#personal" data-toggle="tab">Personal</a></li>
+              <li class="active"><a href="#personal" data-toggle="tab">Kontak</a></li>
             </ul>
             <div class="tab-content">
                 
-              <!-------------------------------------------------------------- Personal --------------------------------------------------> 
-                <?php echo form_open("admin/karyawan/updatePersonal/$dataId->emp_no",['class'=>'form-horizontal'])?>
+              <!-------------------------------------------------------------- Kontak --------------------------------------------------> 
+                <?php echo form_open("admin/karyawan/updateKontak/$dataId->emp_no",['class'=>'form-horizontal'])?>
                 
                   <div class="form-group">
                     <label for="emp_no" class="col-sm-2 control-label">ID</label>
@@ -65,62 +69,64 @@
                     </div>
                   </div>
                    <div class="form-group">
-                    <label for="Tempat_Lahir" class="col-sm-2 control-label">Nama</label>
+                    <label for="" class="col-sm-2 control-label">Nama</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="nama_karyawan" class="form-control" id="nama"  value= "<?=$nama?>" readonly >
+                      <input type="text"  name="nama" class="form-control" id="nama"  value= "<?=$nama?>" readonly>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="Email" class="col-sm-2 control-label">Email </label>
+                    <div class="col-sm-10">
+                         <input type="text"  name="email" class="form-control" id="email" value="<?=$email?>">
+                          <?=form_error('email')?>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="No_telp" class="col-sm-2 control-label">No Telp</label>
+                    <div class="col-sm-10">
+                         <input type="text"  name="no_telp" class="form-control" id="no_telp" value= "<?=$no_telp?>">
+                          <?=form_error('no_telp')?>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="Mobile" class="col-sm-2 control-label">Mobile</label>
+                    <div class="col-sm-10">
+                         <input type="text"  name="mobile" class="form-control" id="Mobile" value= "<?=$mobile?>">
+                          <?=form_error('mobile')?>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="Tempat_Lahir" class="col-sm-2 control-label">Tempat Lahir</label>
+                    <label for="alamat_ktp" class="col-sm-2 control-label">Alamat KTP</label>
                     <div class="col-sm-10">
-                         <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" value ="<?=$tempat_lahir?>">
+                         <input type="text "row="3" name="alamat_ktp" class="form-control" id="alamat_ktp" value= "<?=$alamat_ktp?>">
+                          <?=form_error('alamat_ktp')?>
                     </div>
                   </div>
                    <div class="form-group">
-                    <label for="tgl_lahir" class="col-sm-2 control-label">Tanggal Lahir</label>
+                    <label for="alamat_tinggal" class="col-sm-2 control-label">Alamat Tinggal </label>
                     <div class="col-sm-10">
-                         <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir"  value= "<?=$tanggal_lahir?>">
-                          <?=form_error('tanggal_lahir')?>
+                         <input type="text" row="3"  name="alamat_tinggal" class="form-control" id="alamat_tinggal" value= "<?=$alamat_tinggal?>">
+                          <?=form_error('alamat_tinggal')?>
+                      </div>
                     </div>
-                  </div>
-                    <div class="form-group">
-                    <label for="agama" class="col-sm-2 control-label">Agama</label>
-                    <div class="col-sm-10">
-                         <select name="agama" value="<?=set_value('agama')?>" class="form-control">
-                           <option value="islam">Islam</option>
-                           <option value="kristen">Kristen</option>
-                           <option value="Katolik">Katolik</option>
-                           <option value="Hindu">Hindu</option>
-                           <option value="Budha">Budha</option>
-                         </select>
-                          <?=form_error('Agama')?>
-                    </div>
-                  </div>
-                   <!-- <div class="form-group">
-                    <label for="profile" class="col-sm-2 control-label">Profile</label>
-                    <div class="col-sm-10">
-                      <input type="File" value="foto" name="profile" class="form-control" id="profile" >
-                    </div>
-                  </div> -->
                    <div class="form-group">
-                    <label for="marital Status" class="col-sm-2 control-label">Marital Status</label>
+                    <label for="" class="col-sm-2 control-label">Kota </label>
                     <div class="col-sm-10">
-                       <?=form_error('marital_status')?>
-                    <label>
-                  <?= form_radio('marital_status', 'Single',
-                    isset($dataPersonal->marital_status) && ($dataPersonal->marital_status == 'Single') ? true : false)
-                  ?> Single
-                </label>
-                 <label>
-                <?= form_radio('marital_status', 'Married',
-                    isset($dataPersonal->marital_status) && ($dataPersonal->marital_status== 'Married') ? true : false)
-                ?> Married
-            </label>
+                         <input type="text"  name="kota" class="form-control" id="kota" value= "<?=$kota?>">
+                          <?=form_error('kota')?>
                     </div>
                   </div>
+                   <div class="form-group">
+                    <label for="provinsi" class="col-sm-2 control-label">Provinsi </label>
+                    <div class="col-sm-10">
+                         <input type="text"  name="provinsi" class="form-control" id="provinsi" value= "<?=$provinsi?>">
+                          <?=form_error('kota')?>
+                    </div>
+                  </div>
+                  
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" id="" class="btn btn-primary">Submit</button>
+                      <button type="submit" id="" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
                   <?php echo form_close()?>
@@ -162,8 +168,8 @@
  <script>
         $('#tgl_lahir').datepicker({
           autoClose:true,
+          //clearBtn:true,
           orientation:"bottom",
-          format:'dd-mm-yyyy',
         });            
  </script>
 

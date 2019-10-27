@@ -19,10 +19,24 @@ class Hitung_M extends CI_Model {
 		$data = [];
 		foreach ($q->result() as $key => $v) {
 			$data[$v->emp_no] = $v->gapok;
+
 		}
 
 		return $data;
 	}
+
+	public function getUangMakan()
+	{
+		$q = $this->db->get('gapok');
+		$data = [];
+		foreach ($q->result() as $key => $v) {
+			$data[$v->emp_no] = $v->uang_makan;
+			
+		}
+
+		return $data;
+	}
+
 
 	public function getTunjangan()
 	{
@@ -65,7 +79,7 @@ class Hitung_M extends CI_Model {
 		$data = [];
 		foreach($q->result() as $p)
 		{
-			$data[$p->emp_no] = $p->unpaid*50000;
+			$data[$p->emp_no] = $p->unpaid;
 		}
 
 		return $data;

@@ -139,12 +139,12 @@ class Karyawan extends CI_Controller {
 
 	public function updatePersonal($id)
 	{
-			$config = [
-			'upload_path'=>'./upload/gambar/',
-			'allowed_types'=>'gif|jpg|png|jpeg'
-			];
+			// $config = [
+			// 'upload_path'=>'./upload/gambar/',
+			// 'allowed_types'=>'gif|jpg|png|jpeg'
+			// ];
 
-		$this->load->library('upload',$config);
+		// $this->load->library('upload',$config);
 		$this->form_validation->set_rules('emp_no','emp_no','required');
 		$this->form_validation->set_rules('tempat_lahir','tempat_lahir','required');
 		$this->form_validation->set_rules('tanggal_lahir','tanggal_lahir','required');
@@ -154,11 +154,11 @@ class Karyawan extends CI_Controller {
 
 		if($this->form_validation->run() && $this->upload->do_upload('profile'))
 		{
-			$tesUpload = $this->upload->data();
-			$path = base_url("upload/gambar/".$tesUpload['raw_name'].$tesUpload['file_ext']);
+			// $tesUpload = $this->upload->data();
+			// $path = base_url("upload/gambar/".$tesUpload['raw_name'].$tesUpload['file_ext']);
 			$data = array(
 				'emp_no'=>$this->input->post('emp_no',true),
-				'profile'=>$path,
+				// 'profile'=>$this->input->post($path),
 				'tempat_lahir'=>$this->input->post('tempat_lahir',true),
 				'tanggal_lahir'=>$this->convertdate($this->input->post('tanggal_lahir',true)),
 				'marital_status'=>$this->input->post('marital_status',true),
@@ -329,7 +329,51 @@ class Karyawan extends CI_Controller {
 			echo validation_errors();
 			
 		}
-	}
+	} // end of function create pengalaman 
+
+	public function updatePengalaman($id,$idP)
+	{
+		$dataId = $this->modelKaryawan->getIdentitas($id);
+		$dataPengalaman = $this->modelKaryawan->getPengalaman($id,$idP);
+		// $dataIdPengalaman =$this->modelKaryawan->getIdPengalaman($id);
+		$dataPersonal = $this->modelKaryawan->getPersonal($id);
+		$title = 'Update Pengalaman';
+		$konten = 'Admin_View/Karyawan/EditPengalaman';
+		$this->load->view('Template_Admin',compact('title','konten','dataId','dataPengalaman','dataPersonal'));
+		
+		//rules form 
+		$this->form_validation->set_rules('emp_no','emp_no','required');
+		$this->form_validation->set_rules('posisi','posisi','required');
+		$this->form_validation->set_rules('gaji','gaji','required|numeric');
+		$this->form_validation->set_rules('perusahaan','perusahaan','required');
+		$this->form_validation->set_rules('thn_masuk','thn_masuk','required');
+		$this->form_validation->set_rules('thn_keluar','thn_keluar','required');
+		$this->form_validation->set_rules('alasan','alasan','required');
+		$this->form_validation->set_error_delimiters('<p class = "text-red">');
+
+		if($this->form_validation->run())
+		{
+			$data= array(
+				'emp_no'=>$this->input->post('emp_no',true),
+				'posisi'=>$this->input->post('posisi',true),
+				'gaji'=>$this->input->post('gaji',true),
+				'perusahaan'=>$this->input->post('perusahaan',true),
+				'thn_masuk'=>$this->convertdate($this->input->post('thn_masuk',true)),
+				'thn_keluar'=>$this->convertdate($this->input->post('thn_keluar',true)),
+				'alasan' =>$this->input->post('alasan',true),
+			);
+				$this->modelKaryawan->ubahPengalaman($id,$data);
+				$this->session->set_flashdata('dialogbox','Data berhasil di masukan');
+				redirect('Admin/Karyawan/pengalaman/'.$id);
+		}	else {
+			
+			echo validation_errors();
+			
+		}
+	} // end of function create pengalaman 
+
+
+
 
 	public function pendidikan($id)
 	{

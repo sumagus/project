@@ -65,7 +65,7 @@
                   <tr>
                     <th><h4>Jenis Tunjangan</h4></th>
                     <th><h4>Jumlah</h4></th>
-                    <th><h4>Action</h4></th>
+              <!--       <th><h4>Action</h4></th> -->
                   </tr>
                   </thead>
                   <?php foreach($dataTunjangan as $tampil):?>

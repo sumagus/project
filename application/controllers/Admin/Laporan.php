@@ -28,11 +28,12 @@ class Laporan extends CI_Controller {
 		$title = 'Hitung Gaji Pegawai ';
 		$konten = 'Admin_View/Gapok/Hitung_Gaji';
 		$gapok = $this->modelHitung->getGapok();
+		$uang_makan =$this->modelHitung->getUangMakan();
 		$lembur = $this->modelHitung->getLembur($start,$end);
 		$tunjangan = $this->modelHitung->getTunjangan();
 		$potongan = $this->modelHitung->getPotongan($start,$end);
 		$pilihNama = $this->modelHitung->selectNama();
-		$this->load->view('Template_Admin',compact('konten','title','start','end','emp_no','pilihNama','gapok','lembur','tunjangan','potongan')); 	
+		$this->load->view('Template_Admin',compact('konten','title','start','end','emp_no','pilihNama','gapok','lembur','tunjangan','potongan','uang_makan')); 	
 		
 	}
 

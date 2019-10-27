@@ -30,13 +30,11 @@ class User extends CI_Controller {
 
 	public function create()
 	{
-
 		if($this->modelUser->validasi() == false)
 		{
 			$title = 'Create User';
 			$form_action = 'admin/user/create ';
 			$konten = 'admin_view/user/userform';
-
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 			$data = array (
@@ -56,9 +54,7 @@ class User extends CI_Controller {
 		{
 			$input = $this->modelUser->defaultForm();
 		}
-
 		$input = $this->input->post(null,true);
-
 		if($this->modelUser->validasi() == false)
 		{
 			$konten = 'admin/userform';

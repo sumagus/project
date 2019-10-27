@@ -1,4 +1,16 @@
+<!-- <?php
+$posisi = $dataPengalaman->posisi;
+$gaji = $dataPengalaman->gaji;
+$thn_masuk = $dataPengalaman->thn_masuk;
+$thn_keluar = $dataPengalaman->thn_keluar;
+$perusahaan =$dataPengalaman->perusahaan;
+$alasan = $dataPengalaman->alasan;
+?> -->
 
+
+
+
+?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
@@ -36,31 +48,18 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        
+         
         </div>
         <!-- TABS --> 
            <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-             <!-- <li class="active"><a href="#personal" data-toggle="tab">Personal</a></li>
-              <li><button type="button" class="btn btn-warning btn-sm" id="btn-tambah-form"> + Form</button></li>
-              <li><button type="button" class="btn btn-warning btn-sm" id="btn-reset-form">Reset Data Form</button></li>
-              
-              <a class="btn btn-info btn-lg" href="<?=site_url("admin/karyawan/createPersonal")?>"><i class="fa fa-plus"></i></a>-->
-             
-              <!--
-              <a class="btn btn-info btn-sm" href="<?php echo site_url('admin/karyawan/createIdentitas')?>"><i class="fa fa-plus"> Personal</i></a>
-              <a class="btn btn-info btn-sm" href="#kontak" data-toggle="tab">Kontak</a>
-              <a class="btn btn-info btn-sm" href="<?php echo site_url('admin/karyawan/createIdentitas')?>"><i class="fa fa-plus"> Pengalaman</i></a>
-              <a class="btn btn-info btn-sm" href="<?php echo site_url('admin/karyawan/createIdentitas')?>"><i class="fa fa-plus"> Pendidikan</i></a>
-              <a class="btn btn-info btn-sm" href="<?php echo site_url('admin/karyawan/createIdentitas')?>"><i class="fa fa-plus"> Keluarga</i></a> -->
+              <li class="active"><a href="#personal" data-toggle="tab">Kontak</a></li>
             </ul>
             <div class="tab-content">
                 
-              <!-------------------------------------------------------------- Pengalaman  --------------------------------------------------> 
-            
-                
-                <?php echo form_open("admin/karyawan/createPengalaman/$dataId->emp_no",['class'=>'form-horizontal'])?>
+              <!-------------------------------------------------------------- Kontak --------------------------------------------------> 
+                 <?php echo form_open("admin/karyawan/updatePengalaman/$dataId->emp_no",['class'=>'form-horizontal'])?>
                 
                   <div class="form-group">
                     <label for="emp_no" class="col-sm-2 control-label">ID</label>
@@ -77,42 +76,42 @@
                   <div class="form-group">
                     <label for="posisi" class="col-sm-2 control-label">Posisi</label>
                     <div class="col-sm-10">
-                      <input type="text" name="posisi" class="form-control" id="posisi"  value="<?=set_value('posisi')?>" >
+                      <input type="text" name="posisi" class="form-control" id="posisi"  value="<?=$posisi?>" >
                       <?=form_error('posisi')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="gaji" class="col-sm-2 control-label">Gaji</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="gaji" class="form-control" id="gaji"  value= "<?=set_value('gaji')?>" >
+                      <input type="text"  name="gaji" class="form-control" id="gaji"  value= "<?=$gaji?>" >
                       <?=form_error('gaji')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="perusahaan" class="col-sm-2 control-label">Perusahaan</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="perusahaan" class="form-control" id="perusahaan"  value= "<?=set_value('perusahaan')?>">
+                      <input type="text"  name="perusahaan" class="form-control" id="perusahaan"  value= "<?=$perusahaan?>">
                       <?=form_error('perusahaan')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="thn_masuk" class="col-sm-2 control-label">Tahun Masuk</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="thn_masuk" class="form-control" id="thn_masuk"  value= "<?=set_value('thn_masuk')?>">
+                      <input type="text"  name="thn_masuk" class="form-control" id="thn_masuk"  value= "<?=$thn_masuk?>">
                       <?=form_error('thn_masuk')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="thn_keluar" class="col-sm-2 control-label">Tahun Keluar</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="thn_keluar" class="form-control" id="thn_keluar"  value= "<?=set_value('thn_keluar')?>">
+                      <input type="text"  name="thn_keluar" class="form-control" id="thn_keluar"  value= "<?=$thn_keluar?>?>">
                       <?=form_error('thn_keluar')?>
                     </div>
                   </div>
                    <div class="form-group">
                     <label for="alasan" class="col-sm-2 control-label">Alasan Keluar</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="alasan" class="form-control" id="alasan"  value= "<?=set_value('alasan')?>">
+                      <input type="text"  name="alasan" class="form-control" id="alasan"  value= "<?=$alasan?>">
                       <?=form_error('alasan')?>
                     </div>
                   </div>
@@ -126,7 +125,6 @@
                   </div>
                   <?php echo form_close()?>
                 </form>
-                  
                 </div>
               <!-- /.tab-pane -->
             </div>
@@ -161,73 +159,15 @@
   
 </div>
 <!-- ./wrapper -->
-
- <!--<script>
-  $(document).ready(function(){ // Ketika halaman sudah diload dan siap
-    $("#btn-tambah-form").click(function(){ // Ketika tombol Tambah Data Form di klik
-      var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
-      var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya
-      
-      // Kita akan menambahkan form dengan menggunakan append
-      // pada sebuah tag div yg kita beri id insert-form
-      $("#insert-form").append("<b>Data ke " + nextform + " :</b>" +
-        "<table>" +
-        "<tr>" +
-        "<td>ID</td>" +
-        "<td><input type='text' name='emp_no[]' id='emp_no' value='<?php echo $dataId->emp_no?>'></td>" +
-        "</tr>" +
-         "<tr>" +
-        "<td>posisi</td>" +
-        "<td><input type='text' name='posisi[]' id='posisi'  required></td>" +
-        "</tr>" +
-         "<tr>" +
-        "<td>Gaji</td>" +
-        "<td><input type='text' name='gaji[]' id='gaji' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Perusahaan</td>" +
-        "<td><input type='text' name='perusahaan[]' id='perusahaan' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Tahun Masuk</td>" +
-        "<td><input type='text' name='thn_masuk[]' id='thn_masuk' required></td>" +
-        "</tr>" +
-       "<tr>" +
-        "<td>Tahun Keluar</td>" +
-        "<td><input type='text' name='thn_keluar[]' id='thn_keluar' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>alasan</td>" +
-        "<td><input type='text' name='alasan[]' id='alasan' required></td>" +
-        "</tr>" +
-        "</table>" +
-        "<br><br>");
-      
-      $("#jumlah-form").val(nextform); // Ubah value textbox jumlah-form dengan variabel nextform
-    });
-    
-    // Buat fungsi untuk mereset form ke semula
-    $("#btn-reset-form").click(function(){
-      $("#insert-form").html(""); // Kita kosongkan isi dari div insert-form
-      $("#jumlah-form").val("1"); // Ubah kembali value jumlah form menjadi 1
-    });
-  });
-  </script>-->
-   <script>
-        $('#thn_masuk').datepicker({
+ <script>
+        $('#tgl_lahir').datepicker({
           autoClose:true,
-          clearBtn:true,
+          //clearBtn:true,
           orientation:"bottom",
-          format : 'dd-mm-yyyy',
-        }); 
-
-        $('#thn_keluar').datepicker({
-          autoClose:true,
-          clearBtn:true,
-          orientation:"bottom",
-          format : 'dd-mm-yyyy',
-        });           
+        });            
  </script>
 
 
 
+
+  

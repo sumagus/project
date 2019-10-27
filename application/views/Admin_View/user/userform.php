@@ -60,6 +60,12 @@
                   <input type="text" name="email" value="<?=set_value('email')?>" class="form-control" placeholder="">
                   <?=form_error('email')?>
                 </div>
+                  <!-- <div class="form-group">
+                    <label for="profile" class="col-sm-2 control-label">toFoto</label>
+                    <div class="col-sm-10">
+                      <input type="File" value="foto" name="fo" class="form-control" id="foto" >
+                    </div>
+                  </div> -->
                 <div class="form-group">
                   <label for="Password"> Password</label>
                   <input type="Password" class="form-control" name="password" value="" placeholder="">

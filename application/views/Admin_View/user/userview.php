@@ -36,7 +36,7 @@
         </div>
         <?php endif; ?>
                 <tr>
-                  <th>No</th>
+                  <th>Profile</th>
                   <th>ID</th>
                   <th>Username</th>
                   <th>Nama</th>
@@ -51,7 +51,12 @@
                 $no =1;
                 foreach($allData as $tampil):?>
                 <tr>
-                  <td><?php echo $no++?></td>
+                  <!-- <td>
+                  <div class="widget-user-image">
+                  <img class="img-circle"width ="50" height="50" src="<?php echo base_url("upload/img/gwwwww.jpg")?>" alt="User Avatar">
+                  </div>
+                  </td> -->
+                  <td><?=$no++?></td>
                   <td><?php echo $tampil->id_user?></td>
                   <td><?php echo $tampil->username?></td>
                   <td><?php echo $tampil->nama?></td>

@@ -177,11 +177,29 @@ public function getPengalaman($id)
 
 	}
 
+	// public function getIdPengalaman($id)
+	// {
+	// 	$query = $this->db->where('id_pengalaman',$id)
+	// 					  ->get('pengalaman_karyawan');
+	// 	if($query ->num_rows() > 0 )
+	// 	{
+	// 		return $query->result();
+	// 	}
+
+	// }
+
 	public function buatPengalaman($dataPengalaman)
 	{
 		$query = $this->db->insert('pengalaman_karyawan',$dataPengalaman);
 		return $query ;
 						  
+	}
+
+	public function ubahPengalaman($id,$dataPengalaman)
+	{
+		$query = $this->db->where('id_pengalaman',$id)
+						  ->update('pengalaman_karyawan',$dataPengalaman);
+						return $query;
 	}
 
 //<!------------------------------------------------- MODEL FOR PENDIDIKAN -----------------------------------------------------------//
