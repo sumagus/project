@@ -79,9 +79,15 @@ body {
                <tbody>
                 <?php foreach($pilihNama as $tampil):?>
                   <?php $gaji = isset($gapok[$tampil->emp_no])?$gapok[$tampil->emp_no]:0; ?>
+                  <?php $TotLembur = isset($lembur[$tampil->emp_no])?$lembur[$tampil->emp_no]:0; ?>
                   <?php $makan = isset($uang_makan[$tampil->emp_no])?$uang_makan[$tampil->emp_no]:0; ?>
                   <?php $jmlPotongan = isset($potongan[$tampil->emp_no])?$potongan[$tampil->emp_no]:0;?>
                   <?php $TotPotongan = $makan*$jmlPotongan?> 
+                  <?php $jht   = $gaji*0.020 ?>
+                  <?php $jkk   = $gaji*0.0240 ?>
+                  <?php $jk    = $gaji*0.03 ?> 
+                  <?php $Total =($gaji+$TotLembur)-($TotPotongan+$jht+$jkk+$jk) ?>
+                         
                 <tr> 
                   <td><?php echo $tampil->emp_no.' | '.$tampil->nama_karyawan ?></td>
                   <td><?= $gaji ?></td>
@@ -89,10 +95,10 @@ body {
                   <td><?= isset($tunjangan[$tampil->emp_no])?$tunjangan[$tampil->emp_no]:0 ?></td>
                   <td><?= isset($potongan[$tampil->emp_no])?$potongan[$tampil->emp_no]:0?></td> 
                   <td><?=$TotPotongan?></td> 
-                  <td><?= $gaji*0.020 ?></td>
-                  <td><?= $gaji*0.024 ?></td>
-                  <td><?= $gaji*0.03  ?></td>
-                  <td></td>
+                  <td><?= $jht ?></td>
+                  <td><?= $jkk ?></td>
+                  <td><?= $jk  ?></td>
+                  <td><?= number_format($Total,0,',','.')?></td>
                 </tr> 
               <?php endforeach; ?>
                </tbody>
