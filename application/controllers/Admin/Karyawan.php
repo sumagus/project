@@ -152,7 +152,7 @@ class Karyawan extends CI_Controller {
 		$this->form_validation->set_rules('agama','Agama','required');
 		$this->form_validation->set_error_delimiters('<p class ="text_red">');
 
-		if($this->form_validation->run() && $this->upload->do_upload('profile'))
+		if($this->form_validation->run())
 		{
 			// $tesUpload = $this->upload->data();
 			// $path = base_url("upload/gambar/".$tesUpload['raw_name'].$tesUpload['file_ext']);
@@ -162,7 +162,7 @@ class Karyawan extends CI_Controller {
 				'tempat_lahir'=>$this->input->post('tempat_lahir',true),
 				'tanggal_lahir'=>$this->convertdate($this->input->post('tanggal_lahir',true)),
 				'marital_status'=>$this->input->post('marital_status',true),
-				'agama'=>$this->inoput->post('agama',true),
+				'agama'=>$this->input->post('agama',true),
 			);
 			$this->modelKaryawan->ubahPersonal($id,$data);
 			$this->session->set_flashdata('dialogbox','Data berhasil di ubah');

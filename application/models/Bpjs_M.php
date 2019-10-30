@@ -88,11 +88,17 @@ class Bpjs_M extends CI_Model {
 					   (gaji_bpjs*0.030) as jk_perusahaan
 					   from gajibpjs
 					   INNER JOIN identitas_karyawan on identitas_karyawan.emp_no = gajibpjs.emp_no";
-
 		$query  = $this->db->query($sql);
 		return $query->result();
 	}
 
+	public function isiDataBpjs($data)
+	{	
+		$data = $this->hitungBpjs();
+		$query = $this->db->insert('hitung_bpjs',$data);
+		return $query ;
+
+	}
 
 	public function buatGajiBpjs($data)
 	{

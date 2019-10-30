@@ -13,8 +13,12 @@ class Hitung_M extends CI_Model {
 
 	}
 
-	public function getGapok()
+	public function getGapok($emp_no)
 	{
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
 		$q = $this->db->get('gapok');
 		$data = [];
 		foreach ($q->result() as $key => $v) {
@@ -24,6 +28,7 @@ class Hitung_M extends CI_Model {
 
 		return $data;
 	}
+
 
 	public function getUangMakan()
 	{
@@ -38,8 +43,12 @@ class Hitung_M extends CI_Model {
 	}
 
 
-	public function getTunjangan()
+	public function getTunjangan($emp_no='')
 	{
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
 		$q = $this->db->get('tunjangan_karyawan');
 		$data = [];
 		foreach ($q->result() as $tunjangan) {
@@ -48,13 +57,17 @@ class Hitung_M extends CI_Model {
 		return $data;
 	}
 
-	public function getLembur($start='',$end='')
+	public function getLembur($start='',$end='',$emp_no='')
 	{
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
 		$this->db->select('SUM(uang_lembur) as lembur,emp_no');
-		if ($start!='' && $end!='') {
+		if ($start!='' && $end!='') 
+		{
 			$this->db->where('tanggal >=',date('Y-m-d',strtotime($start)));
-			$this->db->where('tanggal <=',date('Y-m-d',strtotime($end)));
-			
+			$this->db->where('tanggal <=',date('Y-m-d',strtotime($end)));	
 		}
 		$this->db->group_by('emp_no');
 		$q = $this->db->get('lembur');
@@ -84,6 +97,66 @@ class Hitung_M extends CI_Model {
 
 		return $data;
 
+	}
+
+	 // Mengambil data BPJS dari database yang bersifat dinamis
+	public function getGajiBpjs($emp_no)
+	{
+		if($emp_no !='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
+		$q = $this->db->get('gajibpjs');
+		$data = [];
+		foreach ($q->result() as $key => $v) {
+			$data[$v->emp_no] = $v->gaji_bpjs;
+		}
+		return $data;
+	}
+	
+
+	public function getJHTperusahaan()
+	{
+		$where ="id_bpjs = '1'";
+
+		$this->db->select('perusahaan as JHTperusahaan ');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->JHTperusahaan;
+		
+	}
+
+	public function getJHTkaryawan()
+	{
+		$where = "id_bpjs = '1'";
+
+		$this->db->select('pegawai as JHTkaryawan');
+		$this->db->where('id_bpjs',1);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->JHTkaryawan;
+	}
+
+	public function getJKKperusahaan()
+	{
+		$where = "id_bpjs ='2'";
+
+		$this->db->select('perusahaan as JKKperusahaan');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->JKKperusahaan;
+	}
+
+	public function getJKperusahaan()
+	{
+		$where = "id_bpjs ='3'";
+		$this->db->select('perusahaan as JKperusahaan');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->JKperusahaan;
 	}
 
 
@@ -134,12 +207,8 @@ class Hitung_M extends CI_Model {
 	// 	}
 	// }
 
-	public function getId()
-	{
-		$query = $this->db->where('emp_no','30128')
-							->get('identitas_karyawan');
-		return $query->row();
-	}  
+
+	  
 
 	 public function getDataGaji($id) // menfilter ID dari table identitas untuk  
 	 {

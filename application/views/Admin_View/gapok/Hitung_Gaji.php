@@ -9,7 +9,6 @@ body {
 }
   
 </style>
-
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
@@ -22,6 +21,7 @@ body {
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url("Admin/Absen")?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
+
     </section>
      <!-- Main content -->
     <section class="content">
@@ -29,7 +29,7 @@ body {
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Perhitungan Gaji Karyawan Karyawan</h3>
+              <h3 class="box-title">Perhitungan Gaji Karyawan</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -61,6 +61,7 @@ body {
                 </div>
                
               </form>
+              
              <hr>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -71,34 +72,53 @@ body {
                     <th>Total Tunjangan</th>
                     <th>Jumlah Potongan</th>
                     <th>Total Potongan</th>
+                    <th>Gaji Bpjs</th>
                     <th>Total JHT Karyawan</th>
+                    <th>Total JHT Perusahaan</th>
                     <th>Total JKK Perusahaan</th>
                     <th>Total JK Perusahaan</th>
+                    <th><b><h3>Total</h3></b></th>
                 </tr>
                 </thead>
                <tbody>
                 <?php foreach($pilihNama as $tampil):?>
+
+                 <!--  Menghitung nilai gapokBpjs -->
+                  <?php $gajiBpjs = isset($gapok_bpjs[$tampil->emp_no])?$gapok_bpjs[$tampil->emp_no]:0;?>
+                  <?php $totalJhtKaryawan   = $gajiBpjs * $JHTkaryawan ?>  
+                  <?php $totalJhtPerusahaan = $gajiBpjs * $JHTperusahaan ?>
+                  <?php $totalJkkPerusahaan = $gajiBpjs * $JKKperusahaan ?>
+                  <?php $totalJkPerusahaan  = $gajiBpjs * $JKperusahaan ?>    
+
+   
+    
+                 
+                  <!-- MENDAPATKAN KALKULASI GAJI-->
+
                   <?php $gaji = isset($gapok[$tampil->emp_no])?$gapok[$tampil->emp_no]:0; ?>
                   <?php $TotLembur = isset($lembur[$tampil->emp_no])?$lembur[$tampil->emp_no]:0; ?>
+                  <?php $TotTunjangan = isset($tunjangan[$tampil->emp_no])?$tunjangan[$tampil->emp_no]:0; ?>
                   <?php $makan = isset($uang_makan[$tampil->emp_no])?$uang_makan[$tampil->emp_no]:0; ?>
                   <?php $jmlPotongan = isset($potongan[$tampil->emp_no])?$potongan[$tampil->emp_no]:0;?>
                   <?php $TotPotongan = $makan*$jmlPotongan?> 
-                  <?php $jht   = $gaji*0.020 ?>
-                  <?php $jkk   = $gaji*0.0240 ?>
-                  <?php $jk    = $gaji*0.03 ?> 
-                  <?php $Total =($gaji+$TotLembur)-($TotPotongan+$jht+$jkk+$jk) ?>
-                         
+
+                  <!-- MENGHITUNG TOTAL GAJI -->
+                  <!-- <?php $Total =($gaji+$TotLembur+$TotTunjangan)-($TotPotongan+$totalJhtKaryawan+$totalJhtPerusahaan+$totalJkPerusahaan+$totalJkkPerusahaan)?>
+                   -->       
                 <tr> 
                   <td><?php echo $tampil->emp_no.' | '.$tampil->nama_karyawan ?></td>
-                  <td><?= $gaji ?></td>
-                  <td><?= isset($lembur[$tampil->emp_no])?$lembur[$tampil->emp_no]:0 ?></td>
-                  <td><?= isset($tunjangan[$tampil->emp_no])?$tunjangan[$tampil->emp_no]:0 ?></td>
-                  <td><?= isset($potongan[$tampil->emp_no])?$potongan[$tampil->emp_no]:0?></td> 
-                  <td><?=$TotPotongan?></td> 
-                  <td><?= $jht ?></td>
-                  <td><?= $jkk ?></td>
-                  <td><?= $jk  ?></td>
-                  <td><?= number_format($Total,0,',','.')?></td>
+                  <td><?= number_format($gaji,0,',','.') ?></td>
+                  <td><?= number_format(isset($lembur[$tampil->emp_no])?$lembur[$tampil->emp_no]:0) ?></td>
+                  <td><?= number_format(isset($tunjangan[$tampil->emp_no])?$tunjangan[$tampil->emp_no]:0) ?></td>
+                  <td><?= number_format(isset($potongan[$tampil->emp_no])?$potongan[$tampil->emp_no]:0)?></td> 
+                  <td><?= number_format($TotPotongan,0,',','.')?></td>
+                  <td><?= number_format($gajiBpjs,0,',','.')?></td> 
+                  <td><?= number_format($totalJhtKaryawan,0,',','.')?></td>
+                  <td><?= number_format($totalJhtPerusahaan,0,',','.')?></td>
+                  <td><?= number_format($totalJkkPerusahaan,0,',','.')?></td>
+                  <td><?= number_format($totalJkPerusahaan,0,',','.')?></td> 
+                  <td><?= number_format($Total,0,',','.')?></td> 
+                  
                 </tr> 
               <?php endforeach; ?>
                </tbody>
