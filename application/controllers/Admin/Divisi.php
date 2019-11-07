@@ -23,7 +23,7 @@ class Divisi extends CI_Controller {
 	{
 		$title = 'Divisi';
 		$allData = $this->modelDivisi->getAll(); 
-		$konten = 'admin_view/perusahaan/Divisi';	
+		$konten = 'Admin_View/Perusahaan/Divisi';	
 	
 		$this->load->view('Template_Admin',compact('konten','allData','title')); 
 		
@@ -33,14 +33,14 @@ class Divisi extends CI_Controller {
 	{
 			
 		$this->form_validation->set_rules('id_Divisi','ID Divisi','required|is_unique[Divisi.id_Divisi]');
-		$this->form_validation->set_rules('nama_divisi','nama_Divisi','required');	
+		$this->form_validation->set_rules('nama_divisi','Nama Divisi','required');	
 		$this->form_validation->set_error_delimiters('<p class="text-red">');
 		if($this->form_validation->run() == false )
 		{
 			$title = 'Create Divisi';
-			$konten = 'admin_view/perusahaan/formDivisi';
+			$konten = 'Admin_View/Perusahaan/FormDivisi';
 			$form_action = 'Admin/Divisi/create';
-			$this->session->set_flashdata('dialogbox','error');
+			$this->session->set_flashdata('dialogbox','Tidak Berhasil Memasukan Atau Mengupdate Data, Silahkan Periksa Kembali');
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 
@@ -62,7 +62,7 @@ class Divisi extends CI_Controller {
 		{
 			$title='Update Divisi';
 			$dataId = $this->modelDivisi->getBy($id);
-			$konten ='admin_view/perusahaan/updateDivisi';
+			$konten ='Admin_View/Perusahaan/updateDivisi';
 			$form_action ='Admin/Divisi/Update/'.$id;
 			$this->load->view('Template_Admin',compact('dataId','konten','form_action','title'));
 

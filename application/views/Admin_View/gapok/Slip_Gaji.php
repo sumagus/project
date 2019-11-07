@@ -19,7 +19,7 @@ body {
         Perhitungan Gaji Karyawan
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo site_url("Admin/Laporan")?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?php echo site_url("Admin/Absen")?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
 
     </section>
@@ -29,12 +29,11 @@ body {
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Perhitungan Gaji Karyawan</h3>
+              <h3 class="box-title">Cetak Slip</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <a href="#" class="no-print btn btn-info" onclick="window.print();">Print / Cetak</a>
-              <a href="<?php echo base_url("Admin/Laporan/cetak")?>" class="btn btn-info">Buat Slip </a>
               <hr>
                <div class="row">
                 <form method="get" autocomplete="off">
@@ -55,13 +54,13 @@ body {
                     <label>Tanggal Akhir</label>
                   <input type="text"  name ="end" class="form-control" placeholder="End" id="end" value="<?php echo $end ?>">
                 </div>
-              </div>
               </div class="row no-print">
+              <hr>
                 <div class="col-xs-3">
                   <button type="submit" class="btn btn-primary btn-md no-print">Filter</button>
                 </div>
-              </form> 
-             <hr>
+              </form>
+              <hr>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
@@ -92,7 +91,7 @@ body {
                  
                   <!-- MENDAPATKAN KALKULASI GAJI-->
 
-                  <?php $gaji = isset($gapok[$tampil->emp_no])?$gapok[$tampil->emp_no]:0; ?>
+                  <?php $gaji = isset ($gapok[$tampil->emp_no])?$gapok[$tampil->emp_no]:0; ?>
                   <?php $TotLembur = isset($lembur[$tampil->emp_no])?$lembur[$tampil->emp_no]:0; ?>
                   <?php $TotTunjangan = isset($tunjangan[$tampil->emp_no])?$tunjangan[$tampil->emp_no]:0; ?>
                   <?php $makan = isset($uang_makan[$tampil->emp_no])?$uang_makan[$tampil->emp_no]:0; ?>
@@ -142,7 +141,6 @@ body {
       <!-- /.row -->
     </section>
     <!-- /.content -->
-   
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">

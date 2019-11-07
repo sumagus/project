@@ -11,12 +11,14 @@ class Bpjs extends CI_Controller {
 		$this->load->library('session','form_validation');
 	}
 
-	public function index()
+	public function index($id ='' )
 	{		
 		$allData = $this->modelBpjs->getAll(); 
 		$konten = 'Admin_View/Bpjs/Bpjs_View';
 		$title = 'Data Bpjs Karyawan';
+		$BpjsPerusahaan = $this->modelBpjs->getBpjs($id);
 		$this->load->view('Template_Admin',compact('konten','allData','title'));
+		echo var_dump($BpjsPerusahaan);
 	}
 
 	public function create()
@@ -29,11 +31,11 @@ class Bpjs extends CI_Controller {
 		{
 			$input = $this->modelBpjs->defaultForm();
 		} else {
-			$this->form_validation->set_rules('jenis','jenis','required|trim');
-			$this->form_validation->set_rules('nama','nama','required|trim');
-			$this->form_validation->set_rules('persentase','persentase','required|trim');
-			$this->form_validation->set_rules('perusahaan','perusahaan','required|trim');
-			$this->form_validation->set_rules('pegawai','pegawai','required|trim');
+			$this->form_validation->set_rules('jenis','Jenis BPJS','required|trim');
+			$this->form_validation->set_rules('nama','Nama BPJS','required|trim');
+			$this->form_validation->set_rules('persentase','Total Persentase','required|trim');
+			$this->form_validation->set_rules('perusahaan','Persentase Untuk Perusahaan','required|trim');
+			$this->form_validation->set_rules('pegawai','Persentase Untuk Pegawai','required|trim');
 			$this->form_validation->set_error_delimiters('<p class="text-red">');
 
 			if($this->form_validation->run())
@@ -108,7 +110,7 @@ class Bpjs extends CI_Controller {
 	public function generate()
 	{
 		$pilihNama = $this->modelBpjs->selectNama();
-		$form_action = 'admin/bpjs/generate';
+		$form_action = 'Admin/Bpjs/generate';
 		$title = 'Input Gaji Bpjs';
 		$konten = 'Admin_View/Bpjs/Form_Gajibpjs';
 		$this->load->view('Template_Admin',compact('title','konten','form_action','pilihNama'));

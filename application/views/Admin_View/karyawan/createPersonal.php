@@ -23,7 +23,7 @@
             <div class="box-body box-profile"> <?php if (empty($dataPersonal)):?>
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>asset/dist/img/avatar3.png" alt="User profile picture">
             <?php else :?>
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $dataPersonal->profile;?>" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="<?= base_url('upload/gambar/'.$dataPersonal->profile);?>" alt="User profile picture">
             <?php endif;?>
               <h3 class="profile-username text-center"><?=$dataId->nama_karyawan?></h3>
               <p class="text-muted text-center"><?=$dataId->emp_no?></p>
@@ -60,7 +60,7 @@
               <!-------------------------------------------------------------- Personal --------------------------------------------------> 
             
                 
-                <?php echo form_open_multipart("admin/karyawan/createPersonal/$dataId->emp_no",['class'=>'form-horizontal'])?>
+                <?php echo form_open_multipart("admin/karyawan/updatePersonal/".$emp_no,['class'=>'form-horizontal'])?>
                 
                   
                   <div class="form-group">
@@ -78,20 +78,20 @@
                   <div class="form-group">
                     <label for="Tempat_Lahir" class="col-sm-2 control-label">Tempat Lahir</label>
                     <div class="col-sm-10">
-                         <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" value ="<?=set_value('tempat_lahir')?>">
+                         <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" value ="<?=isset($dataPersonal->tempat_lahir)?$dataPersonal->tempat_lahir:set_value('tempat_lahir')?>">
                     </div>
                   </div>
                    <div class="form-group">
                     <label for="tgl_lahir" class="col-sm-2 control-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
-                         <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir"  value= "<?=set_value('tanggal_lahir')?>">
+                         <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir"  value= "<?=isset($dataPersonal->tanggal_lahir)?$dataPersonal->tanggal_lahir:set_value('tanggal_lahir')?>">
                           <?=form_error('tanggal_lahir')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="agama" class="col-sm-2 control-label">Agama</label>
                     <div class="col-sm-10">
-                         <select name="agama" value="<?=set_value('agama')?>" class="form-control">
+                         <select name="agama" value="<?=isset($dataPersonal->agama)?$dataPersonal->agama:set_value('agama')?>" class="form-control">
                            <option value="islam">Islam</option>
                            <option value="kristen">Kristen</option>
                            <option value="Katolik">Katolik</option>
@@ -113,12 +113,12 @@
                        <?=form_error('marital_status')?>
                     <label>
                   <?= form_radio('marital_status', 'Single',
-                    isset($input->marital_status) && ($input->marital_status == 'Single') ? true : false)
+                    isset($dataPersonal->marital_status) && ($dataPersonal->marital_status == 'Single') ? true : false)
                   ?> Single
                 </label>
                  <label>
                 <?= form_radio('marital_status', 'Married',
-                    isset($input->marital_status) && ($input->marital_status== 'Married') ? true : false)
+                    isset($dataPersonal->marital_status) && ($dataPersonal->marital_status== 'Married') ? true : false)
                 ?> Married
             </label>
                     </div>

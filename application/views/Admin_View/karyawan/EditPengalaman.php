@@ -1,16 +1,5 @@
-<!-- <?php
-$posisi = $dataPengalaman->posisi;
-$gaji = $dataPengalaman->gaji;
-$thn_masuk = $dataPengalaman->thn_masuk;
-$thn_keluar = $dataPengalaman->thn_keluar;
-$perusahaan =$dataPengalaman->perusahaan;
-$alasan = $dataPengalaman->alasan;
-?> -->
 
 
-
-
-?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
@@ -54,12 +43,12 @@ $alasan = $dataPengalaman->alasan;
            <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#personal" data-toggle="tab">Kontak</a></li>
+              <li class="active"><a href="#personal" data-toggle="tab">Form Pengalaman</a></li>
             </ul>
             <div class="tab-content">
                 
               <!-------------------------------------------------------------- Kontak --------------------------------------------------> 
-                 <?php echo form_open("admin/karyawan/updatePengalaman/$dataId->emp_no",['class'=>'form-horizontal'])?>
+                 <?php echo form_open("admin/karyawan/updatePengalaman/".$dataId->emp_no.'/'.$dataPengalaman->id_pengalaman,['class'=>'form-horizontal','autocomplete'=>'off'])?>
                 
                   <div class="form-group">
                     <label for="emp_no" class="col-sm-2 control-label">ID</label>
@@ -76,42 +65,42 @@ $alasan = $dataPengalaman->alasan;
                   <div class="form-group">
                     <label for="posisi" class="col-sm-2 control-label">Posisi</label>
                     <div class="col-sm-10">
-                      <input type="text" name="posisi" class="form-control" id="posisi"  value="<?=$posisi?>" >
+                      <input type="text" name="posisi" class="form-control" id="posisi"  value="<?= $dataPengalaman->posisi ?>" >
                       <?=form_error('posisi')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="gaji" class="col-sm-2 control-label">Gaji</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="gaji" class="form-control" id="gaji"  value= "<?=$gaji?>" >
+                      <input type="text"  name="gaji" class="form-control" id="gaji"  value= "<?= $dataPengalaman->gaji ?>" >
                       <?=form_error('gaji')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="perusahaan" class="col-sm-2 control-label">Perusahaan</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="perusahaan" class="form-control" id="perusahaan"  value= "<?=$perusahaan?>">
+                      <input type="text"  name="perusahaan" class="form-control" id="perusahaan"  value= "<?= $dataPengalaman->perusahaan ?>">
                       <?=form_error('perusahaan')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="thn_masuk" class="col-sm-2 control-label">Tahun Masuk</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="thn_masuk" class="form-control" id="thn_masuk"  value= "<?=$thn_masuk?>">
+                      <input type="text"  name="thn_masuk" class="form-control" id="thn_masuk"  value= "<?= $dataPengalaman->thn_masuk ?>">
                       <?=form_error('thn_masuk')?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="thn_keluar" class="col-sm-2 control-label">Tahun Keluar</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="thn_keluar" class="form-control" id="thn_keluar"  value= "<?=$thn_keluar?>?>">
+                      <input type="text"  name="thn_keluar" class="form-control" id="thn_keluar"  value= "<?= $dataPengalaman->thn_keluar ?>">
                       <?=form_error('thn_keluar')?>
                     </div>
                   </div>
                    <div class="form-group">
                     <label for="alasan" class="col-sm-2 control-label">Alasan Keluar</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="alasan" class="form-control" id="alasan"  value= "<?=$alasan?>">
+                      <input type="text"  name="alasan" class="form-control" id="alasan"  value= "<?= $dataPengalaman->alasan ?>">
                       <?=form_error('alasan')?>
                     </div>
                   </div>
@@ -159,12 +148,22 @@ $alasan = $dataPengalaman->alasan;
   
 </div>
 <!-- ./wrapper -->
- <script>
-        $('#tgl_lahir').datepicker({
+  <script>
+        $('#thn_masuk').datepicker({
           autoClose:true,
-          //clearBtn:true,
+          clearBtn:true,
           orientation:"bottom",
-        });            
+          format : 'dd-mm-yyyy',
+          todayHighlight:true,
+        }); 
+
+        $('#thn_keluar').datepicker({
+          autoClose:true,
+          clearBtn:true,
+          orientation:"bottom",
+          format : 'dd-mm-yyyy',
+          todayHighlight:true,
+        });           
  </script>
 
 

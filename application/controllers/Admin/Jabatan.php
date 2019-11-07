@@ -23,21 +23,21 @@ class Jabatan extends CI_Controller {
 	{		
 		$title ='jabatan';
 		$allData = $this->modeljabatan->getAll(); 
-		$konten = 'admin_view/perusahaan/jabatan';
+		$konten = 'Admin_View/Perusahaan/jabatan';
 		$this->load->view('Template_Admin',compact('konten','allData','title'));
 	}
 
 	public function create()
 	{
 			
-		$this->form_validation->set_rules('id_jabatan','id_jabatan','required|is_unique[jabatan.id_jabatan]');
-		$this->form_validation->set_rules('jabatan','jabatan','required');	
+		$this->form_validation->set_rules('id_jabatan','ID','required|is_unique[jabatan.id_jabatan]');
+		$this->form_validation->set_rules('jabatan','Jabatan','required');	
 		$this->form_validation->set_error_delimiters('<p class="text-red">');
 		if($this->form_validation->run() == false )
 		{
 			$title = 'Create Jabatan';
-			$konten = 'admin_view/perusahaan/formjabatan';
-			$form_action = 'admin/jabatan/create';
+			$konten = 'Admin_View/Perusahaan/FormJabatan';
+			$form_action = 'Admin/Jabatan/create';
 			$this->session->set_flashdata('dialogbox','error');
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
@@ -60,8 +60,8 @@ class Jabatan extends CI_Controller {
 		{
 			$title = 'Update Jabatan';
 			$dataId = $this->modeljabatan->getBy($id);
-			$konten ='admin_view/perusahaan/updatejabatan';
-			$form_action ='admin/jabatan/update/'.$id;
+			$konten ='Admin_View/Perusahaan/UpdateJabatan';
+			$form_action ='Admin/Jabatan/update/'.$id;
 			$this->load->view('Template_Admin',compact('dataId','konten','form_action','title'));
 
 		} else {

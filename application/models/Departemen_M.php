@@ -47,12 +47,12 @@ class Departemen_M extends CI_Model {
 		return[
 			[
 				'field'=>'id_departemen',
-				'label'=>'id_departemen',
+				'label'=>'ID',
 				'rules'=>'required'
 			],
 			[
 				'field'=>'nama_departemen',
-				'label'=>'nama_departemen',
+				'label'=>'Nama Departemen',
 				'rules'=>'required'
 			],
 		];
@@ -67,15 +67,15 @@ class Departemen_M extends CI_Model {
 		return $this->form_validation->run();
 	}
 
-	public function searchData($query)
-	{
-		$this->db->select('*');
-		$this->db->from('user');
-		$this->db->like('nama_departemen',$query);
-		$query = $this->db->get();
-		return $query;
+	// public function searchData($query)
+	// {
+	// 	$this->db->select('*');
+	// 	$this->db->from('user');
+	// 	$this->db->like('nama_departemen',$query);
+	// 	$query = $this->db->get();
+	// 	return $query;
 
-	}
+	// } GA JADI DI PAKAI 
 
 }
 

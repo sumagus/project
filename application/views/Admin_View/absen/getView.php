@@ -55,14 +55,14 @@ body {
                   <input type="text"  name ="end" class="form-control" placeholder="End" id="end" value="<?php echo $end ?>">
                 </div>
               </div>
-              </div class="row no-print">
-                <div class="col-xs-3">
+              </div class="row ">
+                <div class="col-xs-3 no-print">
                   <button type="submit" class="btn btn-primary btn-md">Filter</button>
                 </div>
                
               </form>
              <hr>
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th>Nama</th>

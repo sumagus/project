@@ -23,7 +23,7 @@ class Departemen extends CI_Controller {
 	{
 		$title='Departemen';
 		$allData = $this->modelDepartemen->getAll(); 
-		$konten = 'admin_view/perusahaan/departemen';	
+		$konten = 'Admin_View/Perusahaan/Departemen';	
 		if(!$_POST)
 		{ $this->load->view('Template_Admin',compact('konten','allData','title')); }
 		else {
@@ -34,15 +34,15 @@ class Departemen extends CI_Controller {
 	public function create()
 	{
 			
-		$this->form_validation->set_rules('id_departemen','id_departemen','required|is_unique[departemen.id_departemen]');
-		$this->form_validation->set_rules('nama_departemen','nama_departemen','required');	
+		$this->form_validation->set_rules('id_departemen','ID','required|is_unique[departemen.id_departemen]');
+		$this->form_validation->set_rules('nama_departemen','Nama Departemen','required');	
 		$this->form_validation->set_error_delimiters('<p class="text-red">');
 		if($this->form_validation->run() == false )
 		{
 			$title = 'Create Departemen';
-			$konten = 'admin_view/perusahaan/formDepartemen';
-			$form_action = 'Admin/Departemen/Create';
-			$this->session->set_flashdata('dialogbox','error');
+			$konten = 'Admin_View/Perusahaan/FormDepartemen';
+			$form_action = 'Admin/Departemen/create';
+			$this->session->set_flashdata('dialogbox','Tidak Berhasil Memasukan Atau Mengupdate Data, Silahkan Periksa Kembali');
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 
@@ -64,8 +64,8 @@ class Departemen extends CI_Controller {
 		{
 			$title = 'Update Departemen';
 			$dataId = $this->modelDepartemen->getBy($id);
-			$konten ='admin_view/perusahaan/updateDepartemen';
-			$form_action ='admin/departemen/update/'.$id;
+			$konten ='Admin_View/Perusahaan/UpdateDepartemen';
+			$form_action ='Admin/Departemen/update/'.$id;
 			$this->load->view('Template_Admin',compact('dataId','konten','form_action','title'));
 
 		} else {

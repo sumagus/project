@@ -166,10 +166,10 @@ public function getKontak($id)
 //<!------------------------------------------------- MODEL FOR PENGALAMAN -----------------------------------------------------------//
 //<!-------------------------------------------------TABEL PENGALAMAN_KARYAWAN -----------------------------------------------------------//
 
-public function getPengalaman($id)
+public function getAllPengalaman($id)
 	{
 		$query = $this->db->where('emp_no',$id)
-						  ->get('pengalaman_karyawan');
+						   ->get('pengalaman_karyawan');
 		if($query ->num_rows() > 0 )
 		{
 			return $query->result();
@@ -177,16 +177,17 @@ public function getPengalaman($id)
 
 	}
 
-	// public function getIdPengalaman($id)
-	// {
-	// 	$query = $this->db->where('id_pengalaman',$id)
-	// 					  ->get('pengalaman_karyawan');
-	// 	if($query ->num_rows() > 0 )
-	// 	{
-	// 		return $query->result();
-	// 	}
+	public function getPengalamanBy($id, $p)
+	{
+		$query = $this->db->where('emp_no',$id)
+						  ->where('id_pengalaman',$p)
+						  ->get('pengalaman_karyawan');
+		if($query ->num_rows() > 0 )
+		{
+			return $query->row();
+		}
 
-	// }
+	}
 
 	public function buatPengalaman($dataPengalaman)
 	{
@@ -195,9 +196,10 @@ public function getPengalaman($id)
 						  
 	}
 
-	public function ubahPengalaman($id,$dataPengalaman)
+	public function ubahPengalaman($id,$id_pengalaman,$dataPengalaman)
 	{
-		$query = $this->db->where('id_pengalaman',$id)
+		$query = $this->db->where('emp_no',$id)
+							->where('id_pengalaman',$id_pengalaman)
 						  ->update('pengalaman_karyawan',$dataPengalaman);
 						return $query;
 	}

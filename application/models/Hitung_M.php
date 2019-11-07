@@ -10,7 +10,6 @@ class Hitung_M extends CI_Model {
 						  ->get('identitas_karyawan');
 
 						  return $query->result();
-
 	}
 
 	public function getGapok($emp_no)
@@ -23,32 +22,34 @@ class Hitung_M extends CI_Model {
 		$data = [];
 		foreach ($q->result() as $key => $v) {
 			$data[$v->emp_no] = $v->gapok;
-
 		}
 
 		return $data;
 	}
 
-
-	public function getUangMakan()
+	public function getUangMakan($emp_no='')
 	{
+		if($emp_no !='')
+		{
+			$this->db->where('gapok',$emp_no);
+		}
 		$q = $this->db->get('gapok');
 		$data = [];
 		foreach ($q->result() as $key => $v) {
-			$data[$v->emp_no] = $v->uang_makan;
-			
+			$data[$v->emp_no] = $v->uang_makan;	
 		}
-
 		return $data;
 	}
 
 
-	public function getTunjangan($emp_no='')
+	public function getTunjangan($emp_no ='')
 	{
 		if($emp_no!='')
 		{
 			$this->db->where('emp_no',$emp_no);
 		}
+		$this->db->select('SUM(jumlah) as jumlah,emp_no');
+		$this->db->group_by('emp_no');
 		$q = $this->db->get('tunjangan_karyawan');
 		$data = [];
 		foreach ($q->result() as $tunjangan) {
@@ -99,6 +100,76 @@ class Hitung_M extends CI_Model {
 
 	}
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//															FILTER DATA PER ORANG																   //
+
+
+	public function getFilterGapok($emp_no)
+	{
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
+		$q = $this->db->get('gapok');
+		
+		return $q->result();
+	}
+
+	public function getFilterUangMakan($emp_no='')
+	{
+		if($emp_no !='')
+		{
+			$this->db->where('gapok',$emp_no);
+		}
+		$q = $this->db->get('gapok');
+		return $q->result();
+	}
+
+
+	public function getFilterTunjangan($emp_no ='')
+	{
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
+		$this->db->select('SUM(jumlah) as jumlah,emp_no');
+		$this->db->group_by('emp_no');
+		$q = $this->db->get('tunjangan_karyawan');
+		return $q->result();
+	}
+
+	public function getFilterLembur($start='',$end='',$emp_no='')
+	{
+		if($emp_no!='')
+		{
+			$this->db->where('emp_no',$emp_no);
+		}
+		$this->db->select('SUM(uang_lembur) as lembur,emp_no');
+		if ($start!='' && $end!='') 
+		{
+			$this->db->where('tanggal >=',date('Y-m-d',strtotime($start)));
+			$this->db->where('tanggal <=',date('Y-m-d',strtotime($end)));	
+		}
+		$this->db->group_by('emp_no');
+		$q = $this->db->get('lembur');
+		return $q->result();
+	}
+
+	public function getFIlterPotongan($start='',$end='')
+	{
+		$this->db->select('SUM(unpaid) as unpaid,emp_no');
+		if($start!='' && $end!='')
+		{
+			$this->db->where('date>=', date('Y-m-d',strtotime($start)));
+			$this->db->where('date<=', date('Y-m-d',strtotime($end)));
+		}
+		$this->db->group_by('emp_no');
+		$q = $this->db->get('absen');
+		
+		return $q->result();
+	}
+
+
 	 // Mengambil data BPJS dari database yang bersifat dinamis
 	public function getGajiBpjs($emp_no)
 	{
@@ -115,8 +186,9 @@ class Hitung_M extends CI_Model {
 	}
 	
 
-	public function getJHTperusahaan()
+	public function getJHTperusahaan() // mendapatkan nilai persentase dari perusahaan
 	{
+
 		$where ="id_bpjs = '1'";
 
 		$this->db->select('perusahaan as JHTperusahaan ');
@@ -127,8 +199,9 @@ class Hitung_M extends CI_Model {
 		
 	}
 
-	public function getJHTkaryawan()
+	public function getJHTkaryawan() // mendapatkan nilai persentase dari karyawan
 	{
+
 		$where = "id_bpjs = '1'";
 
 		$this->db->select('pegawai as JHTkaryawan');
@@ -138,7 +211,7 @@ class Hitung_M extends CI_Model {
 		return $query->row()->JHTkaryawan;
 	}
 
-	public function getJKKperusahaan()
+	public function getJKKperusahaan() // mendapatkan nalai persentase dari  JKK yang di bayar perusahaan 
 	{
 		$where = "id_bpjs ='2'";
 
@@ -149,14 +222,64 @@ class Hitung_M extends CI_Model {
 		return $query->row()->JKKperusahaan;
 	}
 
-	public function getJKperusahaan()
+	public function getJKperusahaan() // mendapatkan nilai persentase dari JK yang di bayar perusahaan 
 	{
 		$where = "id_bpjs ='3'";
+
 		$this->db->select('perusahaan as JKperusahaan');
 		$this->db->where($where);
 		$this->db->from('bpjs');
 		$query = $this->db->get();
 		return $query->row()->JKperusahaan;
+	}
+
+	public function getJPperusahaan() //mendapatkan nilai persentase dari Jaminan pensiun yang di bayar perusahaan
+	{
+		$where = "id_bpjs = '4'";
+		$this->db->select('perusahaan as JPperusahaan');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->JPperusahaan;
+	}
+
+	public function getJPkaryawan() // mendapatkan  nilai persentase dari jaminan pensiun uyang di bayar karyawan
+	{
+		$where = "id_bpjs='4'";
+		$this->db->select('pegawai as JPkaryawan');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->JPkaryawan;
+	}
+
+	public function getJKESperusahaan()  // mendapatkan nilai persentase jaminan kesehatan yang di bayar oleh perusahaan
+	{
+		$where = "id_bpjs='5'";
+		$this->db->select('perusahaan as getJKESperusahaan');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->getJKESperusahaan;
+	}
+
+	public function getJKESkaryawan() // mmendapatkan nilai persentase jaminan kesehatan yang di bayar oleh karyawan
+	{
+		$where = "id_bpjs='5'";
+		$this->db->select('pegawai as getJKESkaryawan');
+		$this->db->where($where);
+		$this->db->from('bpjs');
+		$query = $this->db->get();
+		return $query->row()->getJKESkaryawan;
+	}
+
+	public function getBpjs($id)
+	{
+		$this->db->where('id_bpjs',$id);
+		$this->db->select('perusahaan as BpjsPerusahaan','pegawai as BpjsKaryawan','persentase as TotalPersentase');
+		$this->db->from('bpjs');
+		$q = $this->db->get();
+		return $q->result();
 	}
 
 
@@ -176,14 +299,6 @@ class Hitung_M extends CI_Model {
 	// 	";
 	// 	$query =$this->db->query($sql);
 	// 	return $query->result();
-	// }
-
-	
-
-	// public function getLembur($emp_no,$start,$end)
-	// {
-
-
 	// }
 
 	// public function Payroll($start='',$end='',$emp_no='') //mengambil data berdasarkan filter 

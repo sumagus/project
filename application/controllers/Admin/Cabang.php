@@ -23,24 +23,24 @@ class Cabang extends CI_Controller {
 	{		
 		$title ='Cabang';
 		$allData = $this->modelCabang->getAll(); 
-		$konten = 'admin_view/perusahaan/Cabang';
+		$konten = 'Admin_View/Perusahaan/cabang';
 		$this->load->view('Template_Admin',compact('konten','allData','title'));
 	}
 
 	public function create()
 	{
 			
-		$this->form_validation->set_rules('id_cabang','id_cabang','required|is_unique[cabang.id_cabang]');
-		$this->form_validation->set_rules('nama_cabang','nama_cabang','required');	
-		$this->form_validation->set_rules('alamat_cabang','alamat_cabang','required|trim');
-		$this->form_validation->set_rules('kota','kota','required|trim');
+		$this->form_validation->set_rules('id_cabang','ID','required|is_unique[cabang.id_cabang]');
+		$this->form_validation->set_rules('nama_cabang','Nama Cabang','required');	
+		$this->form_validation->set_rules('alamat_cabang','Alamat Cabang','required|trim');
+		$this->form_validation->set_rules('kota','Kota','required|trim');
 		$this->form_validation->set_error_delimiters('<p class="text-red">');
 		if($this->form_validation->run() == false )
 		{
 			$title = 'Create Cabang';
-			$konten = 'admin_view/perusahaan/formcabang';
-			$form_action = 'admin/cabang/create';
-			$this->session->set_flashdata('dialogbox','error');
+			$konten = 'Admin_View/Perusahaan/FormCabang';
+			$form_action = 'Admin/Cabang/create';
+			$this->session->set_flashdata('dialogbox','Tidak Berhasil Memasukan Atau Mengupdate Data, Silahkan Periksa Kembali');
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 
@@ -64,8 +64,8 @@ class Cabang extends CI_Controller {
 		{
 			$title = 'Update Cabang';
 			$dataId = $this->modelCabang->getBy($id);
-			$konten ='admin_view/perusahaan/updateCabang';
-			$form_action ='admin/cabang/update/'.$id;
+			$konten ='Admin_View/Perusahaan/UpdateCabang';
+			$form_action ='Admin/Cabang/update/'.$id;
 			$this->load->view('Template_Admin',compact('dataId','konten','form_action','title'));
 
 		} else {

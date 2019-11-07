@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+        Form BPJS 
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url("Admin/Bpjs/Index")?>"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -18,10 +18,12 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
+              <center>
               <h3 class="box-title">Create New BPJS </h3>
+            </center>
             </div>
             <!-- /.box-header -->
-            <?php echo form_open('admin/bpjs/create',['method'=>'POSt'])?>
+            <?php echo form_open('Admin/Bpjs/create',['method'=>'POSt','autocomplete'=>'off'])?>
             <div class="box-body">
                    <div class="row">
             <div class="col-md-12">
@@ -55,7 +57,7 @@
                 <?php echo form_error('pegawai')?>
               </div>
               <!-- /.form-group -->
-                <div class="col-md-12">
+                <div class="form-group">
                <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>

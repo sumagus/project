@@ -38,7 +38,7 @@
                   <th>Total Persentase </th>
                   <th>Perusahaan</th>
                   <th>Pegawai</th>
-                 <!-- <th><a class="btn btn-info btn-sm" href="<?php echo site_url('admin/bpjs/create')?>"><i class="fa fa-plus"></i></a></th>-->
+                  <th><a class="btn btn-info btn-sm" href="<?php echo site_url('Admin/Bpjs/create')?>"><i class="fa fa-plus"></i></a></th>
                 </tr>
                 </thead>
                 <?php 
@@ -62,8 +62,8 @@
                 </tbody>
               </table>
                   <hr>
-            <a href= "<?php echo site_url('admin/bpjs/generate')?>" class="btn btn-info btn-md">Generate </a>
-             <a href= "<?php echo site_url('admin/bpjs/getgenerate')?>" class="btn btn-info btn-md">Lihat Data </a>
+            <a href= "<?php echo site_url('Admin/Bpjs/generate')?>" class="btn btn-info btn-md">Generate </a>
+             <a href= "<?php echo site_url('Admin/Bpjs/getgenerate')?>" class="btn btn-info btn-md">Lihat Data </a>
             </div>
             <!-- /.box-body -->
           </div>

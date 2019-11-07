@@ -4,30 +4,37 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-     <center> <h1>
-        DATA CABANG PERUSAHAAN
-      </h1></center>
+      <h1>
+        <center>
+       <Small>DAFTAR CABANG PERUSAHAAN</Small>
+        </center>
+      </h1>
        <ol class="breadcrumb">
-        <li><a href="<?php echo base_url('index.php/admin/cabang/create')?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        
+        <li><a href="<?php echo site_url("Admin/Cabang")?>"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
+       <?php if($this->session->flashdata('dialogbox')): ?>
+            <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?php echo $this->session->flashdata('dialogbox'); ?>
+            </div>
+            <?php endif; ?>
     </section>
      
     <!-- Main content -->
     <section class="content">
-     <?php if($this->session->flashdata('dialogbox')): ?>
-        <div class="alert alert-info alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <i class="icon fa fa-check"></i>
-        <?php echo $this->session->flashdata('dialogbox'); ?>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <center><h4>Cabang</h4></center>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
         </div>
-        <?php endif; ?>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-             <table class="table table-hover table-bordered" id="tableCabang">
+        <div class="box-body">
+         <table class="table table-hover table-bordered" id="tableCabang">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -35,7 +42,7 @@
                   <th>Cabang</th>
                   <th>Alamat</th>
                   <th>Kota</th>
-                  <th><a class="btn btn-primary btn-sm" href="<?php echo site_url('admin/cabang/create')?>"><i class="fa fa-plus"></i></a></th>
+                  <th><a class="btn btn-primary btn-sm" href="<?php echo site_url('Admin/Cabang/create')?>"><i class="fa fa-plus"></i></a></th>
                 </tr>
               </thead>
                <tbody>
@@ -49,19 +56,18 @@
                   <td><?php echo $tampil->alamat_cabang ?></td>
                   <td><?php echo $tampil->kota?></td>
                   <td>
-                     <a class="btn btn-info btn-sm" href="<?php echo site_url("admin/cabang/update/$tampil->id_cabang")?>"><i class="fa fa-edit"></i></a>
-                     <a class="btn btn-danger btn-sm" onclick= "return confirm('Apakah anda yakin ?')" href ="<?php echo site_url("admin/cabang/delete/$tampil->id_cabang")?>"><i class="fa fa-trash-o"></i></a> 
+                     <a class="btn btn-info btn-sm" href="<?php echo site_url("Admin/Cabang/Update/$tampil->id_cabang")?>"><i class="fa fa-edit"></i></a>
+                     <a class="btn btn-danger btn-sm" onclick= "return confirm('Apakah anda yakin ?')" href ="<?php echo site_url("Admin/Cabang/Delete/$tampil->id_cabang")?>"><i class="fa fa-trash-o"></i></a> 
                     </td>
                 </tr>
               <?php endforeach?>
               </tbody>
               </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
         </div>
+        <!-- /.box-body -->
       </div>
+      <!-- /.box -->
+
     </section>
     <!-- /.content -->
   </div>

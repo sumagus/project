@@ -23,7 +23,7 @@ class User extends CI_Controller {
 	{	
 		$title = 'User';
 		$allData = $this->modelUser->getAll(); 
-		$konten = 'admin_view/user/userview';
+		$konten = 'Admin_View/User/Userview';
 		$level = $this->session->userdata('level');
 		$this->load->view('Template_Admin',compact('konten','allData','title'));
 	}
@@ -33,8 +33,8 @@ class User extends CI_Controller {
 		if($this->modelUser->validasi() == false)
 		{
 			$title = 'Create User';
-			$form_action = 'admin/user/create ';
-			$konten = 'admin_view/user/userform';
+			$form_action = 'Admin/User/create ';
+			$konten = 'Admin_View/User/UserForm';
 			$this->load->view('Template_Admin',compact('konten','form_action','title'));
 		} else {
 			$data = array (
@@ -50,7 +50,7 @@ class User extends CI_Controller {
 			$this->session->set_flashdata('dialogbox','user berhasil di tambahkan');
 			redirect('Admin/User');
 		}
-		/*if($_POST == false)
+		/*if($_POST == false) // cara ke 2 
 		{
 			$input = $this->modelUser->defaultForm();
 		}
@@ -77,8 +77,8 @@ class User extends CI_Controller {
 		{
 			$title = 'Update User';
 			$dataId = $this->modelUser->getBy($id);
-			$konten ='admin_View/user/formUpdate';
-			$form_action ='admin/user/update/'.$id;
+			$konten ='Admin_View/User/FormUpdate';
+			$form_action ='Admin/User/Update/'.$id;
 			$this->load->view('Template_Admin',compact('dataId','konten','form_action','title'));
 
 		} else {

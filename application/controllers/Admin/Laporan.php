@@ -59,22 +59,40 @@ class Laporan extends CI_Controller {
 		
 	}
 
-	public function cetak($id)
+	public function cetak()
 	{
 
 		$emp_no =$this->input->get('emp_no');
 		$start = $this->input->get('start');
 		$end =$this->input->get('end');
 		$title = 'Hitung Gaji Pegawai ';
-		$konten = 'Admin_View/Gapok/Hitung_Gaji';
-		$gapok = $this->modelHitung->getGapok($id);
-		$uang_makan =$this->modelHitung->getUangMakan($id);
-		$lembur = $this->modelHitung->getLembur($start,$end);
-		$tunjangan = $this->modelHitung->getTunjangan($id);
-		$potongan = $this->modelHitung->getPotongan($start,$end);
+		$konten = 'Admin_View/Gapok/Slip_Gaji';
+		$gapok = $this->modelHitung->getFilterGapok($emp_no);
+		$uang_makan =$this->modelHitung->getFIlterUangMakan($emp_no);
+		$lembur = $this->modelHitung->getFilterLembur($emp_no,$start,$end);
+		$tunjangan = $this->modelHitung->getFilterTunjangan($emp_no);
+		$potongan = $this->modelHitung->getFilterPotongan($start,$end);
+		$JHTperusahaan = $this->modelHitung->getJHTperusahaan();
+		$JHTkaryawan =$this->modelHitung->getJHtkaryawan();
+		$JKperusahaan = $this->modelHitung->getJKperusahaan();
+		$JKKperusahaan = $this->modelHitung->getJKKperusahaan();
 		$pilihNama = $this->modelHitung->selectNama();
-		$this->load->view('template_admin',compact('emp_no','start','end','title','konten','gapok','uang_makan','lembur','tunjangan','potongan','pilihNama'));
-
+		$this->load->view('template_admin',compact(
+			'emp_no',
+			'start',
+			'end',
+			'title',
+			'konten',
+			'gapok',
+			'uang_makan',
+			'lembur',
+			'tunjangan',
+			'potongan',
+			'pilihNama',
+			'JHTperusahaan',
+			'JHTkaryawan',
+			'JKKperusahaan',
+			'JKperusahaan'));
 
 	}
 

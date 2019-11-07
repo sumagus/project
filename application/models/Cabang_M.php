@@ -45,22 +45,22 @@ class Cabang_M extends CI_Model {
 		return[
 			[
 				'field'=>'id_cabang',
-				'label'=>'id_cabang',
+				'label'=>'ID',
 				'rules'=>'required|trim'
 			],
 			[
 				'field'=>'nama_cabang',
-				'label'=>'nama_cabang',
+				'label'=>'Nama Cabang',
 				'rules'=>'required|trim'
 			],
 			[
 				'field'=>'alamat_cabang',
-				'label'=>'alamat_cabang',
+				'label'=>'Alamat Cabang',
 				'rules'=>'required|trim'
 			],
 			[
 				'field'=>'kota',
-				'label'=>'kota',
+				'label'=>'Kota',
 				'rules'=>'required|trim'
 			],
 		];

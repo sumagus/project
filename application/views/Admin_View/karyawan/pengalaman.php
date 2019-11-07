@@ -73,7 +73,7 @@
                     <th><h4>Perusahaan</h4></th>
                     <th><h4>Tahun Masuk</h4></th>
                     <th><h4>Tahun Keluar</h4></th>
-                    <th>Aksi</th>
+                    <th><h4>Aksi</h4></th>
                   </tr>
                   </thead>
                   <?php foreach($dataPengalaman as $tampil):?>
@@ -83,11 +83,11 @@
                     <td><?php echo $tampil->perusahaan?></td>
                     <td><?php echo $tampil->thn_masuk?></td>
                     <td><?php echo $tampil->thn_keluar?> </td>
-                    <!-- <td>
+                    <td>
                       <div class="col-sm-offset-2 col-sm-10">
-                       <a class="btn btn-warning btn-md" href="<?=site_url("admin/karyawan/updatePengalaman/$dataId->emp_no")?>" ><i class="fa fa-edit"></i></a>
+                       <a class="btn btn-warning btn-md" href='<?=site_url("admin/karyawan/updatePengalaman/".$tampil->emp_no.'/'.$tampil->id_pengalaman)?>' ><i class="fa fa-edit"></i></a>
                     </div>
-                    </td> -->
+                    </td> 
                   </tr>
                   </tbody>
                 <?php endforeach ?>

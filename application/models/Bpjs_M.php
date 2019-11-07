@@ -82,21 +82,31 @@ class Bpjs_M extends CI_Model {
 	public function hitungBpjs()
 	{
 		$sql = "SELECT identitas_karyawan.nama_karyawan,gaji_bpjs,
-					   (gaji_bpjs*0.040) as jht_perusahaan,
-					   (gaji_bpjs*0.020) as jht_karyawan,
-					   (gaji_bpjs*0.024) as jkk_perusahaan,
-					   (gaji_bpjs*0.030) as jk_perusahaan
+					   (gaji_bpjs)*(3.7/100
+					   ) as jht_perusahaan,
+					   (gaji_bpjs)*(2/100) as jht_karyawan,
+					   (gaji_bpjs)*(2.4/100) as jkk_perusahaan,
+					   (gaji_bpjs)*(0.3/100)  as jk_perusahaan
 					   from gajibpjs
 					   INNER JOIN identitas_karyawan on identitas_karyawan.emp_no = gajibpjs.emp_no";
 		$query  = $this->db->query($sql);
 		return $query->result();
 	}
 
+	public function getBpjs($id)
+	{
+		$this->db->where('id_bpjs',$id);
+		$this->db->select('persentase as TotalPersentase','perusahaan as BpjsPerusahaan','pegawai as BpjsKaryawan');
+		$this->db->from('bpjs');
+		$q = $this->db->get();
+		return $q->result_array();
+	}
+
 	public function isiDataBpjs($data)
 	{	
 		$data = $this->hitungBpjs();
 		$query = $this->db->insert('hitung_bpjs',$data);
-		return $query ;
+		return $query;
 
 	}
 
@@ -113,7 +123,6 @@ class Bpjs_M extends CI_Model {
 						return $query->result();
 	}
 
-	
 }// END OF CLASS
 
 

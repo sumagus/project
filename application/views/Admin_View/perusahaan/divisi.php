@@ -4,32 +4,37 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
       <section class="content-header">
-      <center>
-      <h3>
-        Daftar Divisi
-      </h3>
-    </center>
-      <ol class="breadcrumb">
+      <h1>
+        <center>
+       <Small>DAFTAR DIVISI PERUSAHAAN</Small>
+        </center>
+      </h1>
+       <ol class="breadcrumb">
         <li><a href="<?php echo site_url("Admin/Divisi")?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        
       </ol>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-     
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <?php if($this->session->flashdata('dialogbox')): ?>
+       <?php if($this->session->flashdata('dialogbox')): ?>
             <div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <i class="icon fa fa-check"></i>
             <?php echo $this->session->flashdata('dialogbox'); ?>
             </div>
             <?php endif; ?>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-             <table class="table table-hover table-bordered" id="tableDivisi">
+    </section>
+
+     <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <center><h4>DIVISI</h4></center>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+           <table class="table table-hover table-bordered" id="tableDivisi">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -47,21 +52,21 @@
                   <td><?php echo $tampil->id_divisi ?></td>
                   <td><?php echo $tampil->nama_divisi?></td>
                   <td>
-                     <a class="btn btn-info btn-sm" href="<?php echo site_url("Admin/Divisi/Update/$tampil->id_divisi")?>"><i class="fa fa-edit"></i></a>
-                     <a class="btn btn-danger btn-sm" href="<?php echo site_url("Admin/Divisi/delete/$tampil->id_divisi")?>"><i class="fa fa-trash-o"></i></a> 
+                     <a class="btn btn-info btn-sm" href="<?php echo site_url("Admin/Divisi/update/$tampil->id_divisi")?>"><i class="fa fa-edit"></i></a>
+                     <a class="btn btn-danger btn-sm" href="<?php echo site_url("Admin/Divisi/delete/$tampil->id_divisi")?>" onclick="return confirm('Apakah Anda Yakin ?')"><i class="fa fa-trash-o"></i></a> 
                     </td>
                 </tr>
               <?php endforeach?>
               </tbody>
               </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
         </div>
+        <!-- /.box-body -->
       </div>
+      <!-- /.box -->
+
     </section>
     <!-- /.content -->
+    
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">

@@ -16,9 +16,9 @@ class Absen extends CI_Controller {
   {
     $title = 'Absen Karyawan';    
     $konten = '/Admin_View/Absen/AbsenUpload';
-    $totalKaryawan = $this->modelAbsen->getTotalKaryawan();
+    // $totalKaryawan = $this->modelAbsen->getTotalKaryawan();
     $namaAbsen = $this->modelAbsen->getNama();
-    $this->load->view('Template_Admin',compact('konten','title','namaAbsen','$totalKaryawan'));    
+    $this->load->view('Template_Admin',compact('konten','title','namaAbsen','totalKaryawan'));    
   }
 
   public function convertdate($EXCEL_DATE)

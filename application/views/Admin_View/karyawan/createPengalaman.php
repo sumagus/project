@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+        Pengalaman Karyawan 
       </h1>
     </section>
 
@@ -60,12 +60,12 @@
               <!-------------------------------------------------------------- Pengalaman  --------------------------------------------------> 
             
                 
-                <?php echo form_open("admin/karyawan/createPengalaman/$dataId->emp_no",['class'=>'form-horizontal'])?>
+                <?php echo form_open("admin/karyawan/CreatePengalaman/$dataId->emp_no",['class'=>'form-horizontal','autocomplete'=>'off'])?>
                 
                   <div class="form-group">
                     <label for="emp_no" class="col-sm-2 control-label">ID</label>
                     <div class="col-sm-10">
-                      <input type="text"  name="emp_no" class="form-control" id="emp_no" readonly value=<?php echo $dataId->emp_no?>>
+                      <input type="text"  name="emp_no" class="form-control"  id="emp_no" readonly value=<?php echo $dataId->emp_no?>>
                     </div>
                   </div>
                    <div class="form-group">
@@ -162,57 +162,7 @@
 </div>
 <!-- ./wrapper -->
 
- <!--<script>
-  $(document).ready(function(){ // Ketika halaman sudah diload dan siap
-    $("#btn-tambah-form").click(function(){ // Ketika tombol Tambah Data Form di klik
-      var jumlah = parseInt($("#jumlah-form").val()); // Ambil jumlah data form pada textbox jumlah-form
-      var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya
-      
-      // Kita akan menambahkan form dengan menggunakan append
-      // pada sebuah tag div yg kita beri id insert-form
-      $("#insert-form").append("<b>Data ke " + nextform + " :</b>" +
-        "<table>" +
-        "<tr>" +
-        "<td>ID</td>" +
-        "<td><input type='text' name='emp_no[]' id='emp_no' value='<?php echo $dataId->emp_no?>'></td>" +
-        "</tr>" +
-         "<tr>" +
-        "<td>posisi</td>" +
-        "<td><input type='text' name='posisi[]' id='posisi'  required></td>" +
-        "</tr>" +
-         "<tr>" +
-        "<td>Gaji</td>" +
-        "<td><input type='text' name='gaji[]' id='gaji' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Perusahaan</td>" +
-        "<td><input type='text' name='perusahaan[]' id='perusahaan' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Tahun Masuk</td>" +
-        "<td><input type='text' name='thn_masuk[]' id='thn_masuk' required></td>" +
-        "</tr>" +
-       "<tr>" +
-        "<td>Tahun Keluar</td>" +
-        "<td><input type='text' name='thn_keluar[]' id='thn_keluar' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>alasan</td>" +
-        "<td><input type='text' name='alasan[]' id='alasan' required></td>" +
-        "</tr>" +
-        "</table>" +
-        "<br><br>");
-      
-      $("#jumlah-form").val(nextform); // Ubah value textbox jumlah-form dengan variabel nextform
-    });
-    
-    // Buat fungsi untuk mereset form ke semula
-    $("#btn-reset-form").click(function(){
-      $("#insert-form").html(""); // Kita kosongkan isi dari div insert-form
-      $("#jumlah-form").val("1"); // Ubah kembali value jumlah form menjadi 1
-    });
-  });
-  </script>-->
+ 
    <script>
         $('#thn_masuk').datepicker({
           autoClose:true,

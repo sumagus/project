@@ -48,7 +48,7 @@
               <!-------------------------------------------------------------- Personal --------------------------------------------------> 
             
                 
-                <?php echo form_open("admin/karyawan/createPersonal/$dataId->emp_no",['class'=>'form-horizontal'])?>
+                <?php echo form_open("admin/karyawan/updatePersonal/$dataId->emp_no",['class'=>'form-horizontal'])?>
                 
                   <div class="form-group">
                     <label for="emp_no" class="col-sm-2 control-label">ID</label>
@@ -66,9 +66,9 @@
                     <label for="Tempat_Lahir" class="col-sm-2 control-label">Tempat Lahir</label>
                     <div class="col-sm-10">
                       <?php if(!empty($dataPersonal)):?>
-                      <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" readonly value= <?php echo $dataPersonal->tempat_lahir?>>
+                      <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" value= <?php echo $dataPersonal->tempat_lahir?>>
                       <?php else:?>
-                         <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" readonly value ="<?=set_value('tempat_lahir')?>">
+                         <input type="text"  name="tempat_lahir" class="form-control" id="tempat_lahir" value ="<?=set_value('tempat_lahir')?>">
                         
                       <?php endif;?>
                     </div>
@@ -77,9 +77,9 @@
                     <label for="tgl_lahir" class="col-sm-2 control-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
                        <?php if(!empty($dataPersonal)):?>
-                      <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir" readonly value= <?php echo $dataPersonal->tanggal_lahir?> >
+                      <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir" value= <?php echo $dataPersonal->tanggal_lahir?> >
                       <?php else :?>
-                         <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir" readonly value= "<?=set_value('tanggal_lahir')?>">
+                         <input type="text"  name="tanggal_lahir" class="form-control" id="tgl_lahir" value= "<?=set_value('tanggal_lahir')?>">
                        
                       <?php endif ; ?>
                     </div>
@@ -88,9 +88,9 @@
                     <label for="Agama" class="col-sm-2 control-label">Agama</label>
                     <div class="col-sm-10">
                        <?php if(!empty($dataPersonal)):?>
-                      <input type="text"  name="agama" class="form-control" id="agama" readonly value= <?php echo $dataPersonal->agama?> >
+                      <input type="text"  name="agama" class="form-control" id="agama" value= <?php echo $dataPersonal->agama?> >
                       <?php else :?>
-                         <input type="text"  name="agama" class="form-control" id="agama" readonly value= "<?=set_value('agama')?>">
+                         <input type="text"  name="agama" class="form-control" id="agama" value= "<?=set_value('agama')?>">
     
                       <?php endif ; ?>
                     </div>
@@ -99,26 +99,18 @@
                     <label for="Marital_status" class="col-sm-2 control-label">Marital Status</label>
                     <div class="col-sm-10">  
                          <?php if(!empty($dataPersonal)):?>
-                            <input type="text"  name="Marital_status" class="form-control" id="Marital_status" readonly value= <?php echo $dataPersonal->marital_status?>>
+                            <input type="text"  name="Marital_status" class="form-control" id="Marital_status" value= <?php echo $dataPersonal->marital_status?>>
                           <?php else:?>
-                         <input type="text"  name="Marital_status" class="form-control" id="Marital_status" readonly value= "<?=set_value('marital_status')?>">
+                         <input type="text"  name="Marital_status" class="form-control" id="Marital_status" value= "<?=set_value('marital_status')?>">
                        <?php endif;?>
                     </div>
                   </div>
-                  
-                  <?php if(empty($dataPersonal)):?>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <a class="btn btn-primary btn-md" href="<?=site_url("admin/karyawan/createPersonal/$dataId->emp_no")?>" ><i class="fa fa-plus"></i></a>
+                    <!-- <a class="btn btn-warning btn-md" href="<?=site_url("admin/karyawan/updatePersonal/$dataId->emp_no")?>" ><i class="fa fa-edit"></i></a> -->
+                    <button class="btn btn-warning btn-md"><i class="fa fa-edit"></i></button>
                     </div>
                   </div>
-                  <?php else :?>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                    <a class="btn btn-warning btn-md" href="<?=site_url("admin/karyawan/updatePersonal/$dataId->emp_no")?>" ><i class="fa fa-edit"></i></a>
-                    </div>
-                  </div>
-                <?php endif ;?>
                   <?php echo form_close()?>
                 </form>
                 </div>

@@ -33,12 +33,11 @@
             <div class="display responsive nowrap" >
               <table class="table table-hover table-bordered table-striped" id="tableAbsen">
                 <thead>
-                 
                   <hr>
                 <tr>
                   <th>NO</th>
                   <th>Emp_no</th><th>Name</th><!--<th>Auto-Assign</th>-->
-                    <!--<th>Date</th><!--<th>Timetable</th><th>On Duty</th><th>Off Duty</th><th>Clock In</th><th>Clock Out</th>
+                    <!--<th>Date</th><th>Timetable</th><th>On Duty</th><th>Off Duty</th><th>Clock In</th><th>Clock Out</th>
                     <th>Late</th><th>Late < 60</th><th>Late > 60</th>
                     <th>Early</th><th>Absen</th><th>Sakit</th><th>Cuti</th>
                     <th>Unpaid</th><th>50000</th><th>Keterangan</th>-->

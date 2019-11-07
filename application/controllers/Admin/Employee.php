@@ -93,10 +93,10 @@ class Employee extends CI_Controller {
     'emplid'=>$rowData[0][0],
     'emplname'=>$rowData[0][1],
     'emplstatus'=>$rowData[0][2],
-    'joindate' =>$this->convertdate($rowData[0][3]),
-    'duedate'=>$rowData[0][4],
-    'permdate' =>$rowData[0][5],
-    'resigndate'=>$rowData[0][6],
+    'joindate' =>date('Y-m-d',strtotime($rowData[0][3])),
+    'duedate'=>date('Y-m-d',strtotime($rowData[0][4])),
+    'permdate' =>date('Y-m-d',strtotime($rowData[0][5])),
+    'resigndate'=>date('Y-m-d',strtotime($rowData[0][6])),
     'status'=>$rowData[0][7],
     'branch'=>$rowData[0][8],
     'division'=>$rowData[0][9],
@@ -111,7 +111,7 @@ class Employee extends CI_Controller {
     'faculty'=>$rowData[0][18],
     'religion'=>$rowData[0][19],
     'birthplace'=>$rowData[0][20],
-    'birthdate'=>$rowData[0][21],
+    'birthdate'=>date('Y-m-d',strtotime($rowData[0][21])),
     'age' =>$rowData[0][22],
     'address'=>$rowData[0][23],
     'city'=>$rowData[0][24],
@@ -138,21 +138,21 @@ class Employee extends CI_Controller {
     'account2'=>$rowData[0][45],
     'account_name2'=>$rowData[0][46],
     'spouse'=>$rowData[0][47],
-    'birth_date_spouse'=>$rowData[0][48],
+    'birth_date_spouse'=>date('Y-m-d',strtotime($rowData[0][48])),
     'child1'=>$rowData[0][49],
-    'birth_date_child_1'=>$rowData[0][50],
+    'birth_date_child_1'=>date('Y-m-d',strtotime($rowData[0][50])),
     'education_child'=>$rowData[0][51],
     'child2'=>$rowData[0][52],
-    'birth_date_child2'=>$rowData[0][53],
+    'birth_date_child2'=>date('Y-m-d',strtotime($rowData[0][53])),
     'educationchild2' =>$rowData[0][54],
     'child3'=>$rowData[0][55],
-    'birth_date_child3'=>$rowData[0][56],
+    'birth_date_child3'=>date('Y-m-d',strtotime($rowData[0][56])),
     'educationchild3'=>$rowData[0][57],
     'job_category'=>$rowData[0][58],
     'notes'=>$rowData[0][59],
      );
 
-    $this->db->insert('employee',$data);
+    $this->db->insert('employee_if_upload',$data);
     $this->session->set_flashdata('msg','Berhasil upload ...!!');   
        
     } 
