@@ -18,7 +18,6 @@ class Bpjs extends CI_Controller {
 		$title = 'Data Bpjs Karyawan';
 		$BpjsPerusahaan = $this->modelBpjs->getBpjs($id);
 		$this->load->view('Template_Admin',compact('konten','allData','title'));
-		echo var_dump($BpjsPerusahaan);
 	}
 
 	public function create()

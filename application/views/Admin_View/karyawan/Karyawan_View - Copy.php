@@ -55,7 +55,7 @@
                   <td><?php echo $tampil->gender?></td>
 
                   <td>
-                     <a class="btn btn-info btn-sm" href="<?=site_url("admin/karyawan/Personal/$tampil->emp_no")?>" ><i class="fa fa-edit"></i></a>
+                     <a class="btn btn-info btn-sm" href="<?=site_url("admin/karyawan/updatePersonal/$tampil->emp_no")?>" ><i class="fa fa-edit"></i></a>
                      <!--<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDelete"><i class="fa fa-trash-o"></i></a> -->
                     <a class="btn btn-danger btn-sm" href="<?=site_url("admin/karyawan/delete/$tampil->emp_no")?>" ><i class="fa fa-trash-o"></i></a>
                     </td>

@@ -199,7 +199,7 @@ public function getAllPengalaman($id)
 	public function ubahPengalaman($id,$id_pengalaman,$dataPengalaman)
 	{
 		$query = $this->db->where('emp_no',$id)
-							->where('id_pengalaman',$id_pengalaman)
+						  ->where('id_pengalaman',$id_pengalaman)
 						  ->update('pengalaman_karyawan',$dataPengalaman);
 						return $query;
 	}
@@ -207,7 +207,7 @@ public function getAllPengalaman($id)
 //<!------------------------------------------------- MODEL FOR PENDIDIKAN -----------------------------------------------------------//
 //<!-------------------------------------------------TABEL PENDIDIKAN KARYAWAN -----------------------------------------------------------//
 
-public function getPendidikan($id)
+public function getAllPendidikan($id)
 	{
 		$query = $this->db->where('emp_no',$id)
 						  ->get('pendidikan_karyawan');
@@ -219,10 +219,30 @@ public function getPendidikan($id)
 
 	}
 
+	public function getPendidikanBy($id, $p)
+	{
+		$query = $this->db->where('emp_no',$id)
+						  ->where('id_pendidikan',$p)
+						  ->get('pendidikan_karyawan');
+		if($query ->num_rows() > 0 )
+		{
+			return $query->row();
+		}
+
+	}
+
 	public function buatPendidikan($dataPendidikan)
 	{
 		$query = $this->db->insert('pendidikan_karyawan',$dataPendidikan);
 		return $query ;
+	}
+
+	public function ubahPendidikan($id,$id_pendidikan,$dataPendidikan)
+	{
+		$query = $this->db->where('emp_no',$id)
+						  ->where('id_pendidikan',$id_pendidikan)
+						  ->update('pendidikan_karyawan',$dataPendidikan);
+						return $query;
 	}
 
 	public function selectPendidikan()
@@ -240,7 +260,7 @@ public function getPendidikan($id)
 //<!------------------------------------------------- MODEL FOR KELUARGA -----------------------------------------------------------//
 //<!-------------------------------------------------TABEL KELUARGA KARYAWAN -----------------------------------------------------------//
 
-public function getKeluarga($id)
+	public function getKeluarga($id)
 	{
 
 		$query = $this->db->where('emp_no',$id)
@@ -252,10 +272,30 @@ public function getKeluarga($id)
 
 	}
 
+	public function getKeluargaBy($id, $kel)
+	{
+		$query = $this->db->where('emp_no',$id)
+						  ->where('id_keluarga',$kel)
+						  ->get('keluarga_karyawan');
+		if($query ->num_rows() > 0 )
+		{
+			return $query->row();
+		}
+
+	}
+
 	public function buatKeluarga($dataKeluarga)
 	{
 		$this->db->insert('keluarga_karyawan',$dataKeluarga);
 		return $query;
+	}
+
+	public function ubahKeluarga($id,$id_keluarga,$data)
+	{
+		$query = $this->db->where('emp_no',$id)
+						  ->where('id_keluarga',$id_keluarga)
+						  ->update('keluarga_karyawan',$data);
+						return $query;
 	}
 
 

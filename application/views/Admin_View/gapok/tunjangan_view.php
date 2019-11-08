@@ -18,12 +18,12 @@
       <div class="row">
         <div class="col-md-3">
 
-           <!-- Profile Image -->
+            <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile"> <?php if (empty($dataPersonal)):?>
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>asset/dist/img/avatar3.png" alt="User profile picture">
             <?php else :?>
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $dataPersonal->profile;?>" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="<?= base_url('upload/gambar/'.$dataPersonal->profile);?>" alt="User profile picture">
             <?php endif;?>
               <h3 class="profile-username text-center"><?=$dataId->nama_karyawan?></h3>
               <p class="text-muted text-center"><?=$dataId->emp_no?></p>
@@ -65,7 +65,7 @@
                   <tr>
                     <th><h4>Jenis Tunjangan</h4></th>
                     <th><h4>Jumlah</h4></th>
-              <!--       <th><h4>Action</h4></th> -->
+                    <th><h4>Action</h4></th>
                   </tr>
                   </thead>
                   <?php foreach($dataTunjangan as $tampil):?>
@@ -73,8 +73,9 @@
                   <tr>
                     <td><?php echo $tampil->jenis_tunjangan?></td>
                     <td><?php echo $tampil->jumlah?></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                    <a class="btn btn-warning btn-md" href='<?=site_url("admin/karyawan/updateTunjangan/".$tampil->emp_no.'/'.$tampil->id_tunjangan)?>' ><i class="fa fa-edit"></i></a>
+                    </td> 
                   </tr>
                   </tbody>
                 <?php endforeach ?>

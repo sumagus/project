@@ -163,13 +163,13 @@ class Karyawan extends CI_Controller {
 			if (isset($cekKAryawan->emp_no)) {
 				$update = $this->modelKaryawan->ubahPersonal($emp_no,$data);
 				if ($update) {
-					redirect('admin/karyawan/updatePersonal/'.$emp_no,'refresh');
+					redirect('Admin/Karyawan/updatePersonal/'.$emp_no,'refresh');
 				}
 			} else {
 				$data['emp_no'] = $emp_no;
 				$insert = $this->modelKaryawan->buatPersonal($data);
 				if ($insert) {
-					redirect('admin/karyawan/updatePersonal/'.$emp_no,'refresh');
+					redirect('Admin/Karyawan/updatePersonal/'.$emp_no,'refresh');
 				}
 			}
 		} else {
@@ -381,7 +381,6 @@ class Karyawan extends CI_Controller {
 			
 		$dataId = $this->modelKaryawan->getIdentitas($id);
 		$dataPengalaman =$this->modelKaryawan->getPengalamanBy($id,$id_pengalaman);
-		// $dataPengalamanBy = $this->modelKaryawan->getPengalamanBy($id,$p);
 		$dataPersonal = $this->modelKaryawan->getPersonal($id);
 		$title = 'Update Pengalaman';
 		$konten = 'Admin_View/Karyawan/EditPengalaman';
@@ -396,7 +395,7 @@ class Karyawan extends CI_Controller {
 	public function pendidikan($id)
 	{
 		$dataId = $this->modelKaryawan->getIdentitas($id);
-		$dataPendidikan = $this->modelKaryawan->getPendidikan($id);
+		$dataPendidikan = $this->modelKaryawan->getAllPendidikan($id);
 		$title = 'Data Pendidikan';
 		$konten = 'Admin_View/Karyawan/pendidikan';
 		$dataPersonal = $this->modelKaryawan->getPersonal($id);
@@ -414,7 +413,7 @@ class Karyawan extends CI_Controller {
 		$title ='Create Pendidikan ';
 		$konten = 'Admin_View/Karyawan/CreatePendidikan';
 		$dataId = $this->modelKaryawan->getIdentitas($id);
-		$dataPendidikan = $this->modelKaryawan->getPendidikan($id,$id_pendidikan); 
+		$dataPendidikan = $this->modelKaryawan->getPendidikanBy($id,$id_pendidikan); 
 		$dataPersonal = $this->modelKaryawan->getPersonal($id);
 		$pilihPendidikan =$this->modelKaryawan->selectPendidikan();
 		
@@ -448,7 +447,50 @@ class Karyawan extends CI_Controller {
 		} else {
 			echo validation_errors();
 		}
-	}
+	} // end of function create pendidikan 
+
+	public function updatePendidikan($id,$id_pendidikan)
+	{
+		
+		
+		$this->form_validation->set_rules('emp_no','emp_no','required');
+		$this->form_validation->set_rules('jenjang','jenjang','required');
+		$this->form_validation->set_rules('thn_masuk','thn_masuk','required');
+		$this->form_validation->set_rules('thn_lulus','thn_lulus','required');
+		$this->form_validation->set_rules('institusi','institusi','required');
+		$this->form_validation->set_rules('jurusan','jurusan','trim');
+		$this->form_validation->set_rules('fakultas','fakultas','trim');
+		$this->form_validation->set_rules('nilai','nilai','trim');
+		$this->form_validation->set_error_delimiters('<p class="text-red">');
+
+
+		if($this->form_validation->run())
+		{
+			$data = array(
+				'emp_no'=>$this->input->post('emp_no',true),
+				'jenjang'=>$this->input->post('jenjang',true),
+				'thn_masuk'=>$this->convertdate($this->input->post('thn_masuk',true)),
+				'thn_lulus'=>$this->convertdate($this->input->post('thn_lulus',true)),
+				'institusi'=>$this->input->post('institusi',true),
+				'jurusan'=>$this->input->post('jurusan',true),
+				'fakultas'=>$this->input->post('fakultas',true),
+				'nilai'=>$this->input->post('nilai',true),
+			);
+				$this->modelKaryawan->ubahPendidikan($id,$id_pendidikan,$data);
+				$this->session->set_flashdata('dialogbox','Data berhasil di masukan');
+				redirect('Admin/Karyawan/Pendidikan/'.$id);
+		}	else {
+			
+		$dataId = $this->modelKaryawan->getIdentitas($id);
+		$dataPendidikan =$this->modelKaryawan->getPendidikanBy($id,$id_pendidikan);
+		$dataPersonal = $this->modelKaryawan->getPersonal($id);
+		$title = 'Update Pendidikan';
+		$konten = 'Admin_View/Karyawan/EditPendidikan';
+		$this->load->view('Template_Admin',compact('title','konten','dataId','dataPendidikan','dataPersonal'));
+			
+		}
+	} // end of function update Pendidikan  
+
 
 	public function keluarga($id)
 	{
@@ -456,13 +498,13 @@ class Karyawan extends CI_Controller {
 		$dataKeluarga = $this->modelKaryawan->getKeluarga($id);
 		$dataPersonal = $this->modelKaryawan->getPersonal($id);
 		$title = 'Data Keluarga';
-		$konten = 'admin_view/karyawan/keluarga';
+		$konten = 'Admin_View/Karyawan/keluarga';
 		$dataId = $this->modelKaryawan->getIdentitas($id);
 		$dataKeluarga = $this->modelKaryawan->getKeluarga($id);
 		if (!empty($dataKeluarga)){
 		$this->load->view('Template_Admin',compact('title','konten','dataId','dataKeluarga','dataPersonal'));
 		} else {
-			redirect('admin/karyawan/createKeluarga/'.$id);
+			redirect('Admin/Karyawan/createKeluarga/'.$id);
 		}
 	}
 
@@ -471,7 +513,7 @@ class Karyawan extends CI_Controller {
 		$dataId = $this->modelKaryawan->getIdentitas($id);
 		$dataKeluarga = $this->modelKaryawan->getKeluarga($id);
 		$title = 'Data Keluarga';
-		$konten = 'admin_view/karyawan/createKeluarga';
+		$konten = 'Admin_View/Karyawan/createKeluarga';
 		$dataPersonal = $this->modelKaryawan->getPersonal($id);
 		$this->load->view('Template_Admin',compact('title','konten','dataId','dataKeluarga','dataPersonal'));
 	
@@ -499,7 +541,7 @@ class Karyawan extends CI_Controller {
 
 			$this->modelKaryawan->buatKeluarga($data);
 			$this->session->set_flashdata('dialogbox','Data Berhasill Disimpan ');
-			redirect('admin/karyawan/keluarga/'.$id);
+			redirect('Admin/Karyawan/keluarga/'.$id);
 
 		} else {
 			echo validation_errors();
@@ -507,11 +549,52 @@ class Karyawan extends CI_Controller {
 
 	}//end of function of keluarga 
 
+	public function updateKeluarga($id,$id_keluarga)
+	{
+		
+		
+		$this->form_validation->set_rules('emp_no','emp_no','required');
+		$this->form_validation->set_rules('nama','nama','required');
+		$this->form_validation->set_rules('status','status','required');
+		$this->form_validation->set_rules('gender','gender','required');
+		$this->form_validation->set_rules('pendidikan','pendidikan','required');
+		$this->form_validation->set_rules('alamat','alamat','required');
+		$this->form_validation->set_rules('kontak','kontak','required');
+		$this->form_validation->set_rules('pekerjaan','pekerjaan');
+
+
+		if($this->form_validation->run())
+		{
+			$data = array(
+				'emp_no'=>$this->input->post('emp_no',true),
+				'nama'=>$this->input->post('nama',true),
+				'status'=>$this->input->post('status',true),
+				'gender'=>$this->input->post('gender',true),
+				'pendidikan'=>$this->input->post('pendidikan',true),
+				'alamat'=>$this->input->post('alamat',true),
+				'kontak'=>$this->input->post('kontak',true),
+				'pekerjaan'=>$this->input->post('pekerjaan',true),
+			);
+				$this->modelKaryawan->ubahKeluarga($id,$id_keluarga,$data);
+				$this->session->set_flashdata('dialogbox','Data berhasil di Ubah');
+				redirect('Admin/Karyawan/Keluarga/'.$id);
+		}	else {
+			
+		$dataId = $this->modelKaryawan->getIdentitas($id);
+		$dataKeluarga =$this->modelKaryawan->getKeluargaBy($id,$id_keluarga);
+		$dataPersonal = $this->modelKaryawan->getPersonal($id);
+		$title = 'Update Data Keluarga';
+		$konten = 'Admin_View/Karyawan/EditKeluarga';
+		$this->load->view('Template_Admin',compact('title','konten','dataId','dataKeluarga','dataPersonal'));
+			
+		}
+	} // end of function update Pendidikan  
+
 
 	public function pajak($id)
 	{
 		$title	='Data Pajak Karyawan';
-		$konten = 'admin_view/gapok/pajak_view';
+		$konten = 'Admin_View/Gapok/Pajak_View';
 		$dataId = $this->modelKaryawan->getIdentitas($id);
 		$dataPajak = $this->modelKaryawan->getPajak($id);
 		$dataPersonal = $this->modelKaryawan->getPersonal($id);
@@ -520,9 +603,9 @@ class Karyawan extends CI_Controller {
 		if (!empty($dataPajak)){
 		$this->load->view('Template_Admin',compact('title','konten','dataId','dataPajak','dataPersonal','nama','emp_no'));
 		} else {
-			redirect('admin/karyawan/createPajak/'.$id);
+			redirect('Admin/Karyawan/createPajak/'.$id);
 		}	
-	}
+	} // end of function pajak
 
 	public function createPajak($id)
 	{
@@ -532,7 +615,7 @@ class Karyawan extends CI_Controller {
 		$nama = $dataId->nama_karyawan;
 		$emp_no =$dataId->emp_no;
 		$title = 'Data Pajak';
-		$konten = 'admin_view/gapok/createPajak';
+		$konten = 'Admin_View/Gapok/createPajak';
 		$this->load->view('Template_Admin',compact('title','konten','dataId','dataPajak','dataPersonal','nama','emp_no'));
 		$this->form_validation->set_rules('emp_no','emp_no','required');
 		$this->form_validation->set_rules('npwp','NPWP','required|trim|numeric');
@@ -548,7 +631,7 @@ class Karyawan extends CI_Controller {
 
 			$this->modelKaryawan->buatPajak($data);
 			$this->session->set_flashdata('dialogbox','Data Berhasil Disimpan ');
-			redirect('admin/karyawan/pajak/'.$id);
+			redirect('Admin/Karyawan/pajak/'.$id);
 
 		} else {
 			echo validation_errors();
@@ -573,7 +656,7 @@ class Karyawan extends CI_Controller {
 			);
 			$this->modelKaryawan->ubahPajak($id,$data);
 			$this->session->set_flashdata('dialogbox','Data berhasil di perbaharui ');
-			redirect('admin/karyawan/pajak/'.$id);
+			redirect('Admin/Karyawan/pajak/'.$id);
 		} else {
 		$this->session->set_flashdata('dialogbox','Gagal Memperbaharui Data');
 		$dataId = $this->modelKaryawan->getIdentitas($id);
@@ -583,7 +666,7 @@ class Karyawan extends CI_Controller {
 		$nama = $dataId->nama_karyawan;
 		$npwp = $dataPajak->npwp;
 		$title = 'Update Data Pajak pegawai';
-		$konten = 'admin_view/gapok/updatePajak';
+		$konten = 'Admin_View/Gapok/updatePajak';
 		$this->load->view('Template_Admin',compact('konten','title','emp_no','dataPajak','dataPersonal','nama','dataId','npwp'));
 		}
 	}
@@ -598,7 +681,7 @@ class Karyawan extends CI_Controller {
 			}  
 		$this->modelKaryawan->hapusIdentitas($id,$delData);
 		$this->session->set_flashdata('dialogbox','data berhasil di hapus');
-				redirect('admin/karyawan/index');
+				redirect('Admin/Karyawan/index');
 
 	}//END OF FUNCTION DELETE
 
@@ -613,7 +696,7 @@ class Karyawan extends CI_Controller {
 		{
 		$this->load->view('Template_Admin',compact('title','konten','dataId','dataTunjangan','dataPersonal'));
 		} else {
-			redirect('admin/karyawan/createTunjangan/'.$id);
+			redirect('Admin/Karyawan/createTunjangan/'.$id);
 		}
 		
 	} // end of function tunjangan 
@@ -627,7 +710,7 @@ class Karyawan extends CI_Controller {
 		$nama = $dataId->nama_karyawan;
 		$emp_no =$dataId->emp_no;
 		$title = 'Data Tunjangan';
-		$konten = 'admin_view/gapok/tunjangan_form';
+		$konten = 'Admin_View/Gapok/Tunjangan_Form';
 		$this->load->view('Template_Admin',compact('title','konten','dataId','dataTunjangan','dataPersonal','nama','emp_no'));
 		$this->form_validation->set_rules('emp_no','emp_no','required');
 		$this->form_validation->set_rules('jumlah','jumlah','required|trim|numeric');
@@ -643,7 +726,7 @@ class Karyawan extends CI_Controller {
 
 			$this->modelKaryawan->buatTunjangan($data);
 			$this->session->set_flashdata('dialogbox','Data Berhasil Disimpan ');
-			redirect('admin/karyawan/tunjangan/'.$id);
+			redirect('Admin/Karyawan/tunjangan/'.$id);
 
 		} else {
 			echo validation_errors();

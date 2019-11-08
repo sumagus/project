@@ -21,7 +21,7 @@
             <div class="box-body box-profile"> <?php if (empty($dataPersonal)):?>
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>asset/dist/img/avatar3.png" alt="User profile picture">
             <?php else :?>
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $dataPersonal->profile;?>" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="<?= base_url('upload/gambar/'.$dataPersonal->profile);?>" alt="User profile picture">
             <?php endif;?>
               <h3 class="profile-username text-center"><?=$dataId->nama_karyawan?></h3>
               <p class="text-muted text-center"><?=$dataId->emp_no?></p>
@@ -74,6 +74,7 @@
                     <th><h4>Alamat</h4></th>
                     <th><h4>Kontak</h4></th>
                     <th><h4>Pekerjaan</h4></th>
+                    <th><h4>Aksi<h4></th>
                   </tr>
                   </thead>
                   <?php foreach($dataKeluarga as $tampil):?>
@@ -86,6 +87,11 @@
                     <td><?php echo $tampil->alamat?></td>
                     <td><?php echo $tampil->kontak?></td>
                     <td><?php echo $tampil->pekerjaan?></td>
+                     <td>
+                      <div class="col-sm-offset-2 col-sm-10">
+                       <a class="btn btn-warning btn-md" href='<?=site_url("admin/karyawan/updateKeluarga/".$tampil->emp_no.'/'.$tampil->id_keluarga)?>' ><i class="fa fa-edit"></i></a>
+                    </div>
+                    </td> 
                   </tr>
                   </tbody>
                 <?php endforeach ?>

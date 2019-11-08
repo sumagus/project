@@ -23,7 +23,7 @@
             <div class="box-body box-profile"> <?php if (empty($dataPersonal)):?>
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>asset/dist/img/avatar3.png" alt="User profile picture">
             <?php else :?>
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo $dataPersonal->profile;?>" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" src="<?= base_url('upload/gambar/'.$dataPersonal->profile);?>" alt="User profile picture">
             <?php endif;?>
               <h3 class="profile-username text-center"><?=$dataId->nama_karyawan?></h3>
               <p class="text-muted text-center"><?=$dataId->emp_no?></p>
@@ -76,6 +76,7 @@
                     <th><h4>Jurusan</h4></th>
                     <th><h4>Fakultas</h4></th>
                     <th><h4>Nilai</h4></th>
+                    <th><h4>AKsi</h4></th>
                   </tr>
                   </thead>
                   <?php foreach($dataPendidikan as $tampil):?>
@@ -88,6 +89,11 @@
                     <td><?php echo $tampil->jurusan?></td>
                     <td><?php echo $tampil->fakultas?></td>
                     <td><?php echo $tampil->nilai?></td>
+                     <td>
+                      <div class="col-sm-offset-2 col-sm-10">
+                       <a class="btn btn-warning btn-md" href='<?=site_url("admin/karyawan/updatePendidikan/".$tampil->emp_no.'/'.$tampil->id_pendidikan)?>' ><i class="fa fa-edit"></i></a>
+                    </div>
+                    </td> 
                   </tr>
                   </tbody>
                 <?php endforeach ?>
